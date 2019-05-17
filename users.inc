@@ -28,11 +28,11 @@ class Student extends user {
   }
   function write_subject()
   {
+    header('location:post_subject.php')
 
   }
   function write_solution()
   {
-
   }
   function confirm()
   {
