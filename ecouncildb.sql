@@ -80,7 +80,12 @@ sh_subject_vote_count        INT(8) NOT NULL default 0,
 PRIMARY KEY (announcements_id)
 ) TYPE=INNODB;
 
-
+CREATE TABLE results (
+result_id         INT(8) NOT NULL AUTO_INCREMENT,
+result_content        TEXT NOT NULL,
+result_date       DATETIME NOT NULL,
+PRIMARY KEY (resut_id)
+) TYPE=INNODB;
 
 
 
