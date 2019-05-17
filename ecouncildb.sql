@@ -85,6 +85,7 @@ result_id         INT(8) NOT NULL AUTO_INCREMENT,
 result_content        TEXT NOT NULL,
 result_date       DATETIME NOT NULL,
 PRIMARY KEY (resut_id)
+  
 ) TYPE=INNODB;
 
 
