@@ -31,6 +31,7 @@ subject_date      DATETIME NOT NULL,
 subject_cat       INT(8) NOT NULL,
 subject_by        INT(8) NOT NULL,
 subject_session  INT(8) NOT NULL,
+subject_checked ENUM('0','1') NOT NULL,
 subject_vote_count        INT(8) NOT NULL default 0,
 PRIMARY KEY (topic_id)
 ) TYPE=INNODB;
@@ -41,6 +42,7 @@ comment_content        TEXT NOT NULL,
 comment_date       DATETIME NOT NULL,
 comment_topic      INT(8) NOT NULL,
 comment_by     INT(8) NOT NULL,
+comment_check ENUM('0','1') NOT NULL,
 PRIMARY KEY (post_id)
 ) TYPE=INNODB;
 
@@ -48,7 +50,7 @@ CREATE TABLE sessions (
 session_id         INT(8) NOT NULL AUTO_INCREMENT,
 start_date       DATETIME NOT NULL,
 end_date       DATETIME NOT NULL,
-activity numbers ENUM('0','1')
+activity numbers ENUM('0','1') NOT NULL,
 PRIMARY KEY (post_id)
 ) TYPE=INNODB;
 
