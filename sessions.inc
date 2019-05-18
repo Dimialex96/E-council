@@ -39,7 +39,7 @@ class Session {
   }
   function select_session ()
   {
-    $query = "SELECT * FROM sessions WHERE session_status = 'ACTIVE' ";
+    $query = "SELECT * FROM sessions WHERE session_status = '1' ";
     $result = mysqli_query($db, $query);
       if (mysqli_num_rows($result) > 0) {
           // output data of each row
