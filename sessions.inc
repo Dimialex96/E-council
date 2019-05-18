@@ -1,43 +1,61 @@
 <?php
 //session
 class Session {
+  var $session_id;
   var $duration;
   var $start_date;
   var $end_date;
-  var $activity;
-
+  var $extention;
+  var $session_status;
+  $extention = $_POST['extention'];
+  $end_date = $_POST['end_date'];
   function __construct($duration,$start_date,$end_date,$activity)
   {
     $this->duration = $duration;
     $this->start_date = $start_date;
     $this->end_date = $end_date;
-    $this->activity = $activity;
+    $this->session_status = $session_status;
+    $this->session_id = $session_id;
   }
-  function allow_student ()
+  function update_session ($session_id,$extention,$end_date)
   {
-
-  }
-  function reject_student ()
-  {
-
-  }
-  function request_confirm_extention ()
-  {
-
-  }
-  function db_update ()
-  {
-
+    $end_date = $end_date + $extention;
+    $next_session_id = ($session_id + '1') % '3' ;
+    $query = "UPDATE sessions SET end_date = '$end_date'  WHERE session_id = '$session_id'";
+    $query = "SELECT start_date FROM sessions WHERE session_id = '$next_session_id'";
+    $query = "UPDATE sessions SET start_date = '$end_date'  WHERE session_id = '$next_session_id'";
   }
   function redirect_to_active_session ()
   {
+    $query = "SELECT session_id FROM sessions WHERE session_status = 'ACTIVE'";
+    if (session_id = 0) {
+      header('forum_session.php');
+    } elseif (session_id = 1) {
+      header('post_solution.php');
+    } else {
+      header('vote_solution.php');
+    }
 
   }
-  function db_select_session ()
+  function select_session ()
+  {
+    $query = "SELECT * FROM sessions WHERE session_status = 'ACTIVE' ";
+    $result = mysqli_query($db, $query);
+      if (mysqli_num_rows($result) > 0) {
+          // output data of each row
+            while($row = mysqli_fetch_assoc($result)) {
+              echo ":announcement_id " . $row["announcement_id"].  "&nbsp&nbspContents&nbsp" .$row['announcement_content'].
+              "&nbsp&nbspDate&nbsp" .$row['announcement_date']."&nbsp&nbspBy&nbsp" .$row['announcement_by']. "<br>" ;
+            }
+      } else {
+            echo "0 results";
+      }
+  }
+  function session_status ()
   {
 
   }
-  function session_status ()
+  function show_session_infos()
   {
 
   }
