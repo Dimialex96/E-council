@@ -65,12 +65,12 @@ solution_by     INT(8) NOT NULL,
 PRIMARY KEY (solution_id)
 ) TYPE=INNODB;
 
-CREATE TABLE anouncements (
-anouncement_id         INT(8) NOT NULL AUTO_INCREMENT,
-announcements_content        TEXT NOT NULL,
-announcements_date       DATETIME NOT NULL,
+CREATE TABLE announcements (
+announcement_id         INT(8) NOT NULL AUTO_INCREMENT,
+announcement_content        TEXT NOT NULL,
+announcement_date       DATETIME NOT NULL,
 announcement_by     INT(8) NOT NULL,
-PRIMARY KEY (announcements_id)
+PRIMARY KEY (announcement_id)
 ) TYPE=INNODB;
 
 CREATE TABLE social_hour_subject (
