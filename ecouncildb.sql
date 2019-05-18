@@ -48,6 +48,8 @@ PRIMARY KEY (post_id)
 
 CREATE TABLE sessions (
 session_id         INT(8) NOT NULL AUTO_INCREMENT,
+duration         DATEDIFF NOT NULL,
+extention         DATEDIFF NOT NULL,
 start_date       DATETIME NOT NULL,
 end_date       DATETIME NOT NULL,
 activity numbers ENUM('0','1') NOT NULL,
