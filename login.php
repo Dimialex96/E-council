@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="style.css">
   <title>E council</title>
 </head>
-<body class="bg-img1">
+<body >
   <div class="header">
   	<h2>Είσοδος</h2>
   </div>
