@@ -52,7 +52,7 @@ duration         DATEDIFF NOT NULL,
 extention         DATEDIFF NOT NULL,
 start_date       DATETIME NOT NULL,
 end_date       DATETIME NOT NULL,
-activity numbers ENUM('0','1') NOT NULL,
+activity_numbers ENUM('0','1') NOT NULL,
 PRIMARY KEY (post_id)
 ) TYPE=INNODB;
 
