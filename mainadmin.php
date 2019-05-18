@@ -1,4 +1,16 @@
 <?php
+session_start();
+
+  if (!isset($_SESSION['user_name'])) {
+  	$_SESSION['ecouncildb'] = "Πρέπει να συνδεθείτε πρώτα";
+  	header('location: login.php');
+  }
+  if (isset($_GET['logout'])) {
+  	session_destroy();
+  	unset($_SESSION['user_name']);
+  	header("location: /////////loginm.php--->adminlogin.php");
+  }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,10 +29,10 @@
   	              <?php if (isset($_SESSION['success'])) : ?>
              <div class="error success" >
               	<h3>
-                 <?php
-          	     echo $_SESSION['success'];
-                 unset($_SESSION['success']);
-                 ?>
+                  <?php
+          	      echo $_SESSION['success'];
+                  unset($_SESSION['success']);
+                  ?>
       	        </h3>
               </div>
                   	<?php endif ?>
