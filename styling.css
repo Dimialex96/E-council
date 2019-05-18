@@ -1,0 +1,30 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+body, {
+  font-size: 100%;
+  background: #f8f856FF;
+}
+.error {
+  width: 92%;
+  margin: 0px auto;
+  padding: 10px;
+  border: 1px solid #a9686a;
+  color: #0c0627;
+  background: #f5f5f5;
+  border-radius: 5px;
+  text-align: left;
+}
+.success {
+  color: #7766443d;
+  background: #d8e4f0;
+  border: 1px solid #0db30f;
+  margin-bottom: 20px;
+}
+.logout{
+  width: 20%;
+  margin: 5% 20% 5% 78%;
+  padding: 10px;
+  border-radius: 10px 10px 10px 10px;
+}
