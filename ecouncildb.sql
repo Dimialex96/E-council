@@ -33,11 +33,11 @@ subject_cat       VARCHAR(255) NOT NULL,
 subject_by        INT(8) NOT NULL,
 subject_description     VARCHAR(255) NOT NULL,
 subject_session  INT(8) NOT NULL,
-subject_checked ENUM('0','1') NOT NULL,
+subject_checked ENUM('0','1') NOT NULL default '0',
 subject_vote_count        INT(8) NOT NULL default 0,
 PRIMARY KEY (topic_id),
-CONSTRAINT subject_has_category FOREIGN KEY(subject_cat) REFERENCES categories(cat_id)ON DELETE CASCADE ON UPDATE CASCADE
-CONSTRAINT subject_posted_by FOREIGN KEY(subject_by) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE;
+CONSTRAINT subject_has_category FOREIGN KEY(subject_cat) REFERENCES categories(cat_id)ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT subject_posted_by FOREIGN KEY(subject_by) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
 ) TYPE=INNODB;
 
 CREATE TABLE comments (
@@ -47,9 +47,9 @@ comment_date       DATETIME NOT NULL,
 comment_subject      INT(8) NOT NULL,
 comment_by     INT(8) NOT NULL,
 comment_check ENUM('0','1') NOT NULL,
-PRIMARY KEY (post_id)
-CONSTRAINT comment_has_subject FOREIGN KEY(comment_subject) REFERENCES subjects(subject_id) ON DELETE CASCADE ON UPDATE CASCADE;
-CONSTRAINT comment_postes_by FOREIGN KEY(comment_by) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE;
+PRIMARY KEY (post_id),
+CONSTRAINT comment_has_subject FOREIGN KEY(comment_subject) REFERENCES subjects(subject_id) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT comment_postes_by FOREIGN KEY(comment_by) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
 ) TYPE=INNODB;
 
 CREATE TABLE sessions (
@@ -71,8 +71,8 @@ solution_subject     INT(8) NOT NULL,
 solution_by     INT(8) NOT NULL,
 solution_vote_count INT(8) NOT NULL default 0,
 PRIMARY KEY (solution_id),
-CONSTRAINT solution_at_subject FOREIGN KEY(solution_subject) REFERENCES subject(subject_id) ON DELETE CASCADE ON UPDATE CASCADE;
-CONSTRAINT solution_posted_by FOREIGN KEY(solution_by) REFERENCES student(student_id) ON DELETE CASCADE ON UPDATE CASCADE;
+CONSTRAINT solution_at_subject FOREIGN KEY(solution_subject) REFERENCES subject(subject_id) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT solution_posted_by FOREIGN KEY(solution_by) REFERENCES student(student_id) ON DELETE CASCADE ON UPDATE CASCADE,
 ) TYPE=INNODB;
 
 CREATE TABLE announcements (
@@ -80,8 +80,8 @@ announcement_id         INT(8) NOT NULL AUTO_INCREMENT,
 announcement_content        TEXT NOT NULL,
 announcement_date       DATETIME NOT NULL,
 announcement_by     INT(8) NOT NULL,
-PRIMARY KEY (announcement_id)
-CONSTRAINT announcement_posted_by FOREIGN KEY(announcement_by) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE;
+PRIMARY KEY (announcement_id),
+CONSTRAINT announcement_posted_by FOREIGN KEY(announcement_by) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
 ) TYPE=INNODB;
 
 CREATE TABLE social_hour_subject (
@@ -90,8 +90,8 @@ sh_subject_content        TEXT NOT NULL,
 sh_subject_date       DATETIME NOT NULL,
 announcement_by     INT(8) NOT NULL,
 sh_subject_vote_count        INT(8) NOT NULL default 0,
-CONSTRAINT announcements_posted_by FOREIGN KEY(announcement_by) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE;
-PRIMARY KEY (announcements_id)
+PRIMARY KEY (announcements_id),
+CONSTRAINT announcements_posted_by FOREIGN KEY(announcement_by) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) TYPE=INNODB;
 
 CREATE TABLE results (
@@ -111,34 +111,34 @@ PRIMARY KEY (resut_id)
 --ΕΙΣΑΓΩΓΗ ΧΡΗΣΤΩΝ ΣΤΗ ΒΑΣΗ
 
 INSERT INTO users (user_id, user_name, user_pass, user_firstname, user_lastname, user_email, user_date ,user_level) 
-		VALUES ('null','papgeorge', 'abcd123', 'Giorgos', 'Papadopoulos' 'gpap@gmail.com', '2018-10-11 12:07', 'administrator');
+		VALUES (null,'papgeorge', 'abcd123', 'Giorgos', 'Papadopoulos' 'gpap@gmail.com', '2018-10-11 12:07', 'administrator');
 
 INSERT INTO users (user_id, user_name, user_pass, user_firstname, user_lastname, user_email, user_date ,user_level) 
-		VALUES ('null','alekosta', '1a2b3c4d', 'Kostantinos', 'Alexioy' 'alkostakis95@yahoo.com', '2018-10-11 11:32', 'administrator');
+		VALUES (null,'alekosta', '1a2b3c4d', 'Kostantinos', 'Alexioy' 'alkostakis95@yahoo.com', '2018-10-11 11:32', 'administrator');
 
 INSERT INTO users (user_id, user_name, user_pass, user_firstname, user_lastname, user_email, user_date ,user_level) 
-		VALUES ('null', 'ioandimi', '123hjk987', 'Ioannou', 'Dimitrios' 'dimioan@gmail.com', '2018-10-11 10:29', 'professor');
+		VALUES (null, 'ioandimi', '123hjk987', 'Ioannou', 'Dimitrios' 'dimioan@gmail.com', '2018-10-11 10:29', 'professor');
 
 INSERT INTO users (user_id, user_name, user_pass, user_firstname, user_lastname, user_email, user_date ,user_level) 
-		VALUES ('null', 'georandr', '456lhj345', 'Georgiou', 'Andreas' 'georgiouand@upatras.gr', '2018-10-11 13:07', 'professor');
+		VALUES (null, 'georandr', '456lhj345', 'Georgiou', 'Andreas' 'georgiouand@upatras.gr', '2018-10-11 13:07', 'professor');
 
 INSERT INTO users (user_id, user_name, user_pass, user_firstname, user_lastname, user_email, user_date ,user_level) 
-		VALUES ('null', 'dimimaria', 'sadpf987f', 'Dimitriou', 'Maria' 'mariadimi@gmail.com', '2018-10-11 10:27', 'moderator');				
+		VALUES (null, 'dimimaria', 'sadpf987f', 'Dimitriou', 'Maria' 'mariadimi@gmail.com', '2018-10-11 10:27', 'moderator');				
 
 INSERT INTO users (user_id, user_name, user_pass, user_firstname, user_lastname, user_email, user_date ,user_level) 
-		VALUES ('null', 'pappan', 'adsfo7098d', 'Pappas', 'Panagiotis' 'papaspan@gmail.com', '2018-10-11 10:45', 'moderator');
+		VALUES (null, 'pappan', 'adsfo7098d', 'Pappas', 'Panagiotis' 'papaspan@gmail.com', '2018-10-11 10:45', 'moderator');
 
 INSERT INTO student (user_id, user_name, user_pass, user_firstname, user_lastname, user_email, user_date) 
-		VALUES ('null', 'papadesp', 'asdfdsf9we', 'Papadopoulou', 'Despina' 'despapa@gmail.com', '2018-10-11 10:19');
+		VALUES (null, 'papadesp', 'asdfdsf9we', 'Papadopoulou', 'Despina' 'despapa@gmail.com', '2018-10-11 10:19');
 
 INSERT INTO student (user_id, user_name, user_pass, user_firstname, user_lastname, user_email, user_date) 
-		VALUES ('null', 'anagnandre', 'lkj345435', 'Anagnostou', 'Andreas' 'anagnostouand@gmail.com', '2018-10-11 10:27');
+		VALUES (null, 'anagnandre', 'lkj345435', 'Anagnostou', 'Andreas' 'anagnostouand@gmail.com', '2018-10-11 10:27');
 
 INSERT INTO studet (user_id, user_name, user_pass, user_firstname, user_lastname, user_email, user_date) 
-		VALUES ('null', 'dimimaria', 'sadpf987f', 'Dimitriou', 'Maria' 'mariadimi@gmail.com', '2018-10-11 10:18');
+		VALUES (null, 'dimimaria', 'sadpf987f', 'Dimitriou', 'Maria' 'mariadimi@gmail.com', '2018-10-11 10:18');
 
 INSERT INTO student (user_id, user_name, user_pass, user_firstname, user_lastname, user_email, user_date ,user_level) 
-		VALUES ('null','papagianal', 'lkjhkjh233', 'Papagianis', 'Alexandros' 'papalex@outlook.com', '2018-10-11 10:14');		
+		VALUES (null,'papagianal', 'lkjhkjh233', 'Papagianis', 'Alexandros' 'papalex@outlook.com', '2018-10-11 10:14');		
 
 
 --ΕΙΣΑΓΩΓΗ categories ΓΙΑ ΤΑ subject
@@ -149,4 +149,3 @@ INSERT INTO categories (cat_id, cat_name, cat_description) VALUES ('null', 'Πρ
 
 INSERT INTO categories (cat_id, cat_name, cat_description) VALUES ('null', 'Πρόγραμμα Εξεταστικής', 'Προβλήματα που αφορούν τον προγραμματισμό διεξαγωγής των εξετάσεων');
 
---ΕΙΣΑΓΩΓΗ subjects
