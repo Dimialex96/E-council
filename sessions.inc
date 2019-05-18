@@ -1,6 +1,13 @@
 <?php
 //session
 class Session {
+ 
+  $db = mysqli_connect('localhost','root','', 'ecounicldb');
+if (!$db) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+  
+  
   var $session_id;
   var $duration;
   var $start_date;
@@ -39,7 +46,7 @@ class Session {
   }
   function select_session ()
   {
-    $query = "SELECT * FROM sessions WHERE session_status = '1' ";
+    $query = "SELECT * FROM sessions ";
     $result = mysqli_query($db, $query);
       if (mysqli_num_rows($result) > 0) {
           // output data of each row
@@ -53,28 +60,61 @@ class Session {
   }
   function session_status ()
   {
-
-  }
-  function show_session_infos()
-  {
+     $query = "SELECT * FROM sessions WHERE session_status = '1' ";
+    $result = mysqli_query($db, $query);
+      if (mysqli_num_rows($result) == 1) {
+          // output data of each row
+            while($row = mysqli_fetch_assoc($result)) {
+              echo ":session_id " . $row["session_id"].  "&nbsp&nbspSession&nbspName&nbsp" .$row['session_name'].
+              "&nbsp&nbspStart&nbspDate&nbsp" .$row['start_date']."&nbsp&nbspEnd&nbspDate&nbsp" .$row['end_date']."&nbsp&nbspActivity&nbsp" .$row['activity_numbers']. "<br>" ;
+            }
+      } else {
+            echo "0 results";
+      }
 
   }
 }
 //council_session
 class Council_Session extends Session {
+  var $solution_vote_count;
+  var $solution_id;
+  $solution_id = $_POST['solution_id'];
+  
   function __construct()
   {
     parent::__construct("duration","start_date","end_date","activity")
   }
-  function session_active()
-  {
-
-  }
-  function request_student()
-  {
-
-  }
+ function update_solution_vote() {
+   $query = "SELECT solution_vote_count FROM solutions WHERE solution_id = '$solution_id'";
+   $solution_vote_count++ ;
+   $query = "UPDATE solution SET solution_vote_count = '$solution_vote_count'  WHERE solution_id = '$solution_id'";
 }
+  function select_solutions(){
+    $query = "SELECT * FROM subjects ORDER BY subject_vote_count DESC LIMIT 10";
+    $result = mysqli_query($db, $query);
+
+if (mysqli_num_rows($result) > 0) {
+    // output data of each row
+    while($row = mysqli_fetch_assoc($result)) {
+        echo "&nbspid Θέματος:&nbsp". $row["solution_id"]. "&nbspΑναγνωριστικό Θέματος:&nbsp" . $row["subject_name"].  "&nbsp&nbspΠεριεχόμενο&nbsp" .$row['subject_description'].  "<br>" ;
+    }
+} else {
+    echo "0 results";
+} 
+    $query = "SELECT * FROM subjects ORDER BY subject_vote_count DESC LIMIT 10";
+    $result1 = mysqli_query($db, $query);
+
+if (mysqli_num_rows($result1) > 0) {
+    // output data of each row
+    while($row = mysqli_fetch_assoc($result1)) {
+        echo "solution_subject: " . $row["solution_subject"]. "<br>""solution_i" .$row['solution_id']. "&nbsp&nbspΛύση:&nbsp" .$row['solution_content'].
+         "<br>" ;
+    }
+} else {
+    echo "0 results";
+} 
+
+  }
 //forum_session
 class Forum_Session extends Session {
   function __construct()
