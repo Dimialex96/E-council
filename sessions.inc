@@ -27,7 +27,7 @@ class Session {
   }
   function redirect_to_active_session ()
   {
-    $query = "SELECT session_id FROM sessions WHERE session_status = 'ACTIVE'";
+    $query = "SELECT session_id FROM sessions WHERE session_status = '1'";
     if (session_id = 0) {
       header('forum_session.php');
     } elseif (session_id = 1) {
@@ -44,8 +44,8 @@ class Session {
       if (mysqli_num_rows($result) > 0) {
           // output data of each row
             while($row = mysqli_fetch_assoc($result)) {
-              echo ":announcement_id " . $row["announcement_id"].  "&nbsp&nbspContents&nbsp" .$row['announcement_content'].
-              "&nbsp&nbspDate&nbsp" .$row['announcement_date']."&nbsp&nbspBy&nbsp" .$row['announcement_by']. "<br>" ;
+              echo ":session_id " . $row["session_id"].  "&nbsp&nbspSession&nbspName&nbsp" .$row['session_name'].
+              "&nbsp&nbspStart&nbspDate&nbsp" .$row['start_date']."&nbsp&nbspEnd&nbspDate&nbsp" .$row['end_date']."&nbsp&nbspActivity&nbsp" .$row['activity_numbers']. "<br>" ;
             }
       } else {
             echo "0 results";
