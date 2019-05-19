@@ -26,7 +26,9 @@ class user {
 class Student extends user {
   protected $etos;
   protected $AM;
-  function __construct($etos,$AM)
+  protected $subject_by;
+  
+  function __construct($etos,$AM,$subject_by)
   {
     parent::__construct("name","surname","username","password","email","id","level")
   }
