@@ -16,7 +16,7 @@ class Announcement {
     $this->publisher = $publisher;
   }
 }
-//manage_announcement
+//manage_announcement class
 class Manage_announcement extends Announcement {
   $announcement_id = $_POST['announcement_id'];
   $announcement_content = $_POST['announcement_content'];
@@ -44,7 +44,7 @@ class Manage_announcement extends Announcement {
         insert_announcement($announcement_content);
         die();
       } else ($kindofannouncement == 'old') {
-        update_announcement($announcement_content);
+        update_announcement($announcement_content,$announcement_id);
         die();
       }
     }
@@ -52,11 +52,9 @@ class Manage_announcement extends Announcement {
   }
   function insert_announcement($announcement_content)
   {
-    $announcement_date = date();
+    $announcement_date = GETDATE();
     $announcement_by = $_POST['username']
-    // $announcement_content = $_POST['announcement_content'];
-    $query = "INSERT INTO announcements (announcement_id, announcement_content, announcement_date, announcement_by) VALUES ('$announcement_id', '$announcement_content','$announcement_date','$announcement_by')";
-
+    $query = "INSERT INTO announcements (announcement_content, announcement_date, announcement_by) VALUES ('$announcement_content','$announcement_date','$announcement_by')";
   }
   function options($option)
   {
