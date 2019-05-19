@@ -117,7 +117,17 @@ class Student extends user {
   }
   function select_solutions()
   {
-  
+    $query = "SELECT * FROM solutions ";
+    $result = mysqli_query($db, $query);
+      if (mysqli_num_rows($result) > 0) {
+          // output data of each row
+            while($row = mysqli_fetch_assoc($result)) {
+              echo ":soution_id " . $row["soution_id"].  "&nbsp&nbspSolution&nbspid&nbsp" .$row['solution_id'].
+              "&nbsp&nbspStart&nbspDate&nbsp" .$row['start_date']."&nbsp&nbspEnd&nbspDate&nbsp" .$row['end_date']."&nbsp&nbspSubject&nbsp" .$row['solution_subject']. "<br>" ;
+            }
+      } else {
+            echo "0 results";
+      }
   }
   function insert_search_parameters()
   {
