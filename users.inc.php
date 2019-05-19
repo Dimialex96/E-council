@@ -32,18 +32,6 @@ class Student extends user {
   {
     parent::__construct("name","surname","username","password","email","id","level")
   }
-  function write_subject($subject_id,$subject_name,$subject_date,$subject_cat,$subject_by,$subject_description,$subject_session,$subject_checked,$subject_vote__count)
-  {
-    
-    header('location:write_subject.php')
-      
-    <?php
-      if(isset($_POST['save']))
-         {
-       $sql = "INSERT INTO subjects (subject_name,subject_date,subject_cat,subject_by,subject_description,subject_session)
-               VALUES ('".$_POST["subject_name"]."',GETDATE(),'".$_POST["subject_cat"]."',this->id,'".$_POST["subject_description"]."','".$_POST["subject_session"])."')';
-         }
-    ?>
     <form method="post",action="writesubject.php"> 
     
     <label for="subject_name">= subject_name:</label><br/>

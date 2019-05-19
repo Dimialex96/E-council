@@ -1,38 +1,36 @@
 <?php
 //announcement
 class Announcement {
-  var $content;
-  var $date;
-  var $category;
-  var $publish_day;
-  var $publisher;
+  var $announcement_content;
+  var $announcement_category;
+  var $announcement_date;
+  var $announcement_by;
 
   function __construct($content,$date,$category,$publish_day,$publisher)
   {
-    $this->content = $content;
-    $this->date = $date;
-    $this->category = $category;
-    $this->publish_day = $publish_day;
-    $this->publisher = $publisher;
+    $this->announcement_content = $announcement_content;
+    $this->announcement_date = $announcement_date;
+    $this->announcement_category = $announcement_category;
+    $this->announcement_by = $announcement_by;
   }
 }
 //manage_announcement class
 class Manage_announcement extends Announcement {
-  $announcement_id = $_POST['announcement_id'];
-  $announcement_content = $_POST['announcement_content'];
-  $kindofannouncement = $_POST['kindofannouncement'];
-  $option = $_POST['option'];
+  private $announcement_id = $_POST['announcement_id'];
+  private $announcement_content = $_POST['announcement_content'];
+  private $kindofannouncement = $_POST['kindofannouncement'];
+  private $option = $_POST['option'];
 
 
-  function __construct()
+  public function __construct()
   {
     parent::__construct("content","date","category","publish_day","publisher")
   }
-  function show_options()
+  public function show_options()
   {
     header("Location: announcements.php");
   }
-  function check_formatting($announcement_content,$kindofannouncement)
+  public function check_formatting_announcement($announcement_content,$kindofannouncement)
   {
     $stringlength = strlen($announcement_content);
     if ( $stringlength >= "200" ) {
@@ -50,13 +48,14 @@ class Manage_announcement extends Announcement {
     }
     }
   }
-  function insert_announcement($announcement_content)
+  public function insert_announcement($announcement_content,$announcement_date,$announcement_by,$announcement_category)
   {
     $announcement_date = GETDATE();
     $announcement_by = $_POST['username']
-    $query = "INSERT INTO announcements (announcement_content, announcement_date, announcement_by) VALUES ('$announcement_content','$announcement_date','$announcement_by')";
+    $query = "INSERT INTO announcements (announcement_content, announcement_date, announcement_by, announcement_category) VALUES ('$announcement_content','$announcement_date','$announcement_by','$announcement_category')";
+    mysqli_query($db, $query);
   }
-  function options($option)
+  public function select_options($option)
   {
     if ($option = 'add') {
       header("Location: add_announcement.php");
@@ -65,33 +64,30 @@ class Manage_announcement extends Announcement {
     }
 
   }
-  function select_announcement()
+  public function select_announcement()
   {
 
     $query = "SELECT * FROM announcements ORDER BY announcement_date DESC";
     $result = mysqli_query($db, $query);
 
       if (mysqli_num_rows($result) > 0) {
-          // output data of each row
             while($row = mysqli_fetch_assoc($result)) {
-              echo ":announcement_id " . $row["announcement_id"].  "&nbsp&nbspContents&nbsp" .$row['announcement_content'].
+              echo ":announcement_id " . $row['announcement_id'].  "&nbsp&nbspContents&nbsp" .$row['announcement_content'].
               "&nbsp&nbspDate&nbsp" .$row['announcement_date']."&nbsp&nbspBy&nbsp" .$row['announcement_by']. "<br>" ;
             }
       } else {
             echo "0 results";
       }
   }
-  function edit_announcement()
-  {
-
-  }
-  function update_announcement($announcement_content,$announcement_id)
+  public function update_announcement($announcement_content,$announcement_id)
   {
     $query = "UPDATE announcement SET announcements_content = '$announcement_content'  WHERE anouncement_id = '$announcement_id'";
+    mysqli_query($db, $query);
   }
-  function delete_announcement($announcement_id)
+  public function delete_announcement($announcement_id)
   {
     $query = "DELETE FROM announcements WHERE anouncement_id = '$announcement_id' ";
+    mysqli_query($db, $query);
   }
 }
 //result
