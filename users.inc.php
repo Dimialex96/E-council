@@ -99,8 +99,8 @@ class Student extends user {
     $result = mysqli_query($ecouncildb, $query);
       if (mysqli_num_rows($result) > 0) {
           // output data of each row
-            while($row = mysqli_fetch_assoc($subjects)) {
-              echo ":session_id " . $row["session_id"].  "&nbsp&nbspSession&nbspName&nbsp" .$row['subject_name']. "<br>" ;
+            while($row = mysqli_fetch_assoc($ote_subjects)) {
+              echo ":subject_id " . $row["subject_id"].  "&nbsp&nbspSubject&nbspNme&nbsp" .$row['subject_name']. "<br>" ;
               
             }
       } else {
