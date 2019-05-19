@@ -35,12 +35,11 @@ class Student extends user {
       if(isset($_POST['save']))
          {
        $sql = "INSERT INTO subjects (subject_name,subject_date,subject_cat,subject_by,subject_description,subject_session)
-               VALUES ('".$_POST["subject_name"]."',GETDATE(),'".$_POST["subject_cat"]."',this->id,'".$_POST["subject_description"]."','".$_POST["subject_session"])."');
+               VALUES ('".$_POST["subject_name"]."', GETDATE(), '".$_POST["subject_cat"]."' ,this->id,'".$_POST["subject_description"]."','".$_POST["subject_session"])."')";
          }
     ?>
+
     <form method="post",action="writesubject.php"> 
-    <subject_id="id"> subject_id:</id><br/>
-    <input type="text" subject_id="subject_id"><br/>
     
     <label for="subject_name">= subject_name:</label><br/>
     <input type="text" subject_name="subject_name"><br/
@@ -60,35 +59,27 @@ class Student extends user {
 
 </body>
 </html>
-///αυτή η φόρμα κανονικα 'επρεπε να μπεί σε μια php αλλά δν έχει υλοποιήθεί///// 
+//αυτή η φόρμα κανονικα 'επρεπε να μπεί σε μια php αλλά δν έχει υλοποιήθεί
 
   }
   function write_solution()
   {
-      header('location:write_subject.php')
+      header('location:write_solution.php')
       
     <?php
       if(isset($_POST['save']))
          {
-       $sql = "INSERT INTO comments (comment_content , comment_date, comment_subject, comment_by)
-               VALUES ('".$_POST["comment_content"]."',GETDATE,'".$_POST["comment_subject"]."',this->id,)";
-         }         
+       $sql = "INSERT INTO solutions (solution_content,solution_date,solution_subject,solution_by)
+               VALUES ('".$_POST["solution_content"]."',GETDATE(),'".$_POST["solution_subject"]."',this->id)";
+         }   
     ?>
-    <form method="post",action="writesubject.php"> 
+    <form method="post",action="write_solution.php"> 
     <subject_id="id"> subject_id:</id><br/>
-    <input type="text" subject_id="subject_id"><br/>
+    <input type="text" subject_id="solution_content"><br/>
     
     <label for="subject_name">= subject_name:</label><br/>
-    <input type="text" subject_name="subject_name"><br/
+    <input type="text" subject_name="solution_subject"><br/
     
-    <label for="subject_cat">= subject_cat:</label><br/>
-    <input type="text" subject_cat="subject_cat"><br/
-    
-     <label for="subject_description">= subject_description:</label><br/>
-    <input type="text" subject_description="subject_descrition"><br/
-    
-     <label for="subject_session">= subject_session:</label><br/>
-    <input type="text" subject_session="subject_session"><br/
    
     <button type="submit" name="save">save</button>
     
