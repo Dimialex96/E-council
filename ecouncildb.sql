@@ -8,13 +8,12 @@ user_email  VARCHAR(255) NOT NULL,
 user_date   DATETIME NOT NULL,
 user_level  ENUM('administrator', 'student', 'professor', 'moderator'),
 UNIQUE INDEX user_name_unique (user_name),
-user_
 PRIMARY KEY (user_id)
 ) TYPE=INNODB;
 
 CREATE TABLE student (
 student_id     INT(8) NOT NULL REFERENCES users(id),
-user_level  ENUM('student') default 'student',
+student_level  ENUM('student') default 'student',
 PRIMARY KEY (student_id)
 ) TYPE=INNODB;
 
@@ -32,7 +31,6 @@ subject_date      DATETIME NOT NULL,
 subject_cat       VARCHAR(255) NOT NULL,
 subject_by        INT(8) NOT NULL,
 subject_description     VARCHAR(255) NOT NULL,
-subject_session  INT(8) NOT NULL,
 subject_checked ENUM('0','1') NOT NULL default '0',
 subject_vote_count        INT(8) NOT NULL default 0,
 PRIMARY KEY (topic_id),
