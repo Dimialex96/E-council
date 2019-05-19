@@ -98,21 +98,6 @@ class Student extends user {
   {
 
   }
-  function select_vote_subject()
-  {
-{
-    $query = "SELECT * FROM subjects ";
-    $result = mysqli_query($ecouncildb, $query);
-      if (mysqli_num_rows($result) > 0) {
-          // output data of each row
-            while($row = mysqli_fetch_assoc($ote_subjects)) {
-              echo ":subject_id " . $row["subject_id"].  "&nbsp&nbspSubject&nbspNme&nbsp" .$row['subject_name']. "<br>" ;
-              
-            }
-      } else {
-            echo "0 results";
-      }
-  }
   function submit_vote()
   {
 
@@ -120,20 +105,6 @@ class Student extends user {
   function validate_vote()
   {
 
-  }
-  function select_solutions()
-  {
-    $query = "SELECT * FROM solutions ";
-    $result = mysqli_query($db, $query);
-      if (mysqli_num_rows($result) > 0) {
-          // output data of each row
-            while($row = mysqli_fetch_assoc($result)) {
-              echo ":soution_id " . $row["soution_id"].  "&nbsp&nbspSolution&nbspid&nbsp" .$row['solution_id'].
-              "&nbsp&nbspStart&nbspDate&nbsp" .$row['start_date']."&nbsp&nbspEnd&nbspDate&nbsp" .$row['end_date']."&nbsp&nbspSubject&nbsp" .$row['solution_subject']. "<br>" ;
-            }
-      } else {
-            echo "0 results";
-      }
   }
   function insert_search_parameters()
   {
@@ -150,43 +121,8 @@ class Admin extends user {
   {
     parent::__construct("name","surname","username","password","email","id")
   }
-  function add_title_content()
-  {
-
-  }
-  function select_announcements()
-  {
-
   }
   function selection()
-  {
-
-  }
-  function confirm()
-  {
-
-  }
-  function change_content()
-  {
-
-  }
-  function show_session_information()
-  {
-
-  }
-  function request_approve_next()
-  {
-
-  }
-  function extend_current_session()
-  {
-
-  }
-  function insert_time_extention()
-  {
-
-  }
-  function confirm_time_extention()
   {
 
   }
