@@ -1,12 +1,12 @@
 <?php
 // user
 class user {
-  var $name;
-  var $surname;
-  var $username;
-  var $password;
-  var $email;
-  var $id;
+  protected $name;
+  protected $surname;
+  protected $username;
+  protected $password;
+  protected $email;
+  protected $id;
 
   function __construct($name,$surname,$username,$password,$email,$id)
   {
