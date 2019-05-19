@@ -82,15 +82,19 @@ class Session {
 class Council_Session extends Session {
   private $solution_vote_count = 0;
   private $solution_id = 0;
-  this->$solution_id = $_POST['solution_id'];
-  this->$solution_content = $_POST['solution_content'];
-  this->$solution_date = GETDATE();
-  this->$solution_by = $_POST['username'];
-  this->$solution_subject = $_POST['solution_subject'];
+  private $solution_content='';
+  private $solution_date;
+  private $solution_by;
 
-  public function __construct()
+  public function __construct($duration,$start_date,$end_date,$activity)
   {
     parent::__construct("duration","start_date","end_date","activity")
+      this->$solution_vote_count = $_POST['solution_vote_count'];
+      this->$solution_id = $_POST['solution_id'];
+      this->$solution_content = $_POST['solution_content'];
+      this->$solution_date = GETDATE();
+      this->$solution_by = $_POST['username'];
+      this->$solution_subject = $_POST['solution_subject'];
   }
   public function check_formatting_solution($solution_content) //elegxos ean to periexomeno tou subject einai mikrotero apo 500 xaraktires
   {
@@ -135,18 +139,25 @@ class Council_Session extends Session {
   }
 //forum_session
 class Forum_Session extends Session {
-  $subject_description = $_POST['subject_description'];
-  $subject_date = GETDATE();
-  $subject_session = $_POST['subject_session'];
-  $subject_by = $_POST['username'];
-  $subject_cat = $_POST['category'];
-  $subject_name = $_POST['subject_name'];
+  private $subject_description;
+  private $subject_date;
+  private $subject_session;
+  private $subject_by;
+  private $subject_cat;
+  private $subject_name ;
 
-  function __construct(descr)
+  public function __construct($duration,$start_date,$end_date,$activity,$subject_description,$subject_date,$subject_session,$subject_by,$subject_cat,$subject_name)
   {
-    parent::__construct("duration","start_date","end_date","activity")
+    parent::__construct("duration","start_date","end_date","activity");
+    $this->$subject_description = $_POST['subject_description'];
+    $this->$subject_date = GETDATE();
+    $this->$subject_session= $_POST['subject_session'];
+    $this->$subject_by = $_POST['username'];
+    $this->$subject_cat = $_POST['category'];
+    $this->$subject_name = = $_POST['subject_name'];
   }
-  public function check_formatting_subject($subject_description) //elegxos ean to periexomeno tou subject einai mikrotero apo 500 xaraktires
+
+public function check_formatting_subject($subject_description) //elegxos ean to periexomeno tou subject einai mikrotero apo 500 xaraktires
   {
     $stringlength = strlen($subject_description);
     if ( $stringlength >= "500" ) {
