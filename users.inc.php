@@ -20,15 +20,47 @@ class user {
 }
 //student
 class Student extends user {
-  var $etos;
-  var $AM;
-  function __construct()
+  protected $etos;
+  protected $AM;
+  function __construct($etos,$AM)
   {
     parent::__construct("name","surname","username","password","email","id")
   }
-  function write_subject()
+  function write_subject($subject_id,$subject_name,$subject_date,$subject_cat,$subject_by,$subject_description,$subject_session,$subject_checked,$subject_vote__count)
   {
-    header('location:post_subject.php')
+    
+    header('location:write_subject.php')
+      
+    <?php
+      if(isset($_POST['save']))
+         {
+       $sql = "INSERT INTO subjects (subject_name,subject_date,subject_cat,subject_by,subject_description,subject_session)
+               VALUES ('".$_POST["subject_name"],GETDATE,'".$_POST["subject_cat"],this->id,'".$_POST["subject_description"],'".$_POST["subject_session"])";
+         }
+    ?>
+    <form method="post",action="writesubject.php"> 
+    <subject_id="id"> subject_id:</id><br/>
+    <input type="text" subject_id="subject_id"><br/>
+    
+    <label for="subject_name">= subject_name:</label><br/>
+    <input type="text" subject_name="subject_name"><br/
+    
+    <label for="subject_cat">= subject_cat:</label><br/>
+    <input type="text" subject_cat="subject_cat"><br/
+    
+     <label for="subject_description">= subject_description:</label><br/>
+    <input type="text" subject_description="subject_descrition"><br/
+    
+     <label for="subject_session">= subject_session:</label><br/>
+    <input type="text" subject_session="subject_session"><br/
+   
+    <button type="submit" name="save">save</button>
+    
+    </form>
+
+</body>
+</html>
+///αυτή η φόρμα κανονικα 'επρεπε να μπεί σε μια php αλλά δν έχει υλοποιήθεί///// 
 
   }
   function write_solution()
