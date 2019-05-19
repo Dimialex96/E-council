@@ -8,7 +8,6 @@ user_email  VARCHAR(255) NOT NULL,
 user_date   DATETIME NOT NULL,
 user_level  ENUM('administrator', 'student', 'professor', 'moderator'),
 UNIQUE INDEX user_name_unique (user_name),
-user_
 PRIMARY KEY (user_id)
 ) TYPE=INNODB;
 
