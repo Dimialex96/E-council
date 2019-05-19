@@ -7,8 +7,10 @@ class user {
   protected $password;
   protected $email;
   protected $id;
+  protected $date;
+  protected $level;
 
-  function __construct($name,$surname,$username,$password,$email,$id)
+  function __construct($name,$surname,$username,$password,$email,$id,$date,$level)
   {
     $this->name = $name;
     $this->surname = $surname;
@@ -16,6 +18,8 @@ class user {
     $this->username = $username;
     $this->email = $emal;
     $this->id = $id;
+    $this->date = $date;
+    $this->level = $level;
   }
 }
 //student
@@ -24,7 +28,7 @@ class Student extends user {
   protected $AM;
   function __construct($etos,$AM)
   {
-    parent::__construct("name","surname","username","password","email","id")
+    parent::__construct("name","surname","username","password","email","id","level")
   }
   function write_subject($subject_id,$subject_name,$subject_date,$subject_cat,$subject_by,$subject_description,$subject_session,$subject_checked,$subject_vote__count)
   {
