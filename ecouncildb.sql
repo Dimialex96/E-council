@@ -13,7 +13,7 @@ PRIMARY KEY (user_id)
 
 CREATE TABLE student (
 student_id     INT(8) NOT NULL REFERENCES users(id),
-user_level  ENUM('student') default 'student',
+student_level  ENUM('student') default 'student',
 PRIMARY KEY (student_id)
 ) TYPE=INNODB;
 
