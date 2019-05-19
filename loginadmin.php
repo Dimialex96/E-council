@@ -1,4 +1,4 @@
-<?php include('/////////////////serverm.php') ?>
+<?php include('/////////////////serveradmin.php') ?> ///το αρχειο sereradmin.php δεν εχει υλοποιηθει
 <!DOCTYPE html>
 <html lang="en">
 <head>

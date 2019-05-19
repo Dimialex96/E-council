@@ -1,4 +1,4 @@
-<?php include('//////serv.php') ?>
+<?php include('//////serv.php') ?> //το αρχείο serv.php δεν έχει υλοποιηθεί//
 
 <!DOCTYPE html>
 <html lang="en">
