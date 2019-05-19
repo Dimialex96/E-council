@@ -78,6 +78,7 @@ announcement_id         INT(8) NOT NULL AUTO_INCREMENT,
 announcement_content        TEXT NOT NULL,
 announcement_date       DATETIME NOT NULL,
 announcement_by     INT(8) NOT NULL,
+announcement_category  VARCHAR(255) NOT NULL,
 PRIMARY KEY (announcement_id),
 CONSTRAINT announcement_posted_by FOREIGN KEY(announcement_by) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
 ) TYPE=INNODB;
