@@ -66,7 +66,7 @@ class Student extends user {
 
   public function getCountsolution() //epistrefei to orio gia solution gia sigkekrimeno student
   {
-    $query = "SELECT countsolution FROM student WHERE student_id = '$student_id'";
+    $query = "SELECT countsolution FROM submittedsolutions WHERE sub_student = '$student_id' AND onsubject = '$subject_id' ";
     $results = mysqli_query($db, $query);
     while($row = mysql_fetch_array($results, MYSQL_BOTH)
     {
@@ -79,7 +79,7 @@ class Student extends user {
   {
     if ($countsolution > 0) {
       $countsolution = $countsolution - 1;
-      $query = "UPDATE student SET countpost = '$countsolution'  WHERE student_id = '$student_id'";
+      $query = "UPDATE submittedsolutions SET countpost = '$countsolution'  WHERE sub_student = '$student_id' AND onsubject = '$subject_id'";
       mysqli_query($db, $query);
       header("Location: post_solution.php");
     } else {

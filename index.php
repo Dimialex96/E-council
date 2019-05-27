@@ -34,7 +34,6 @@ body {
   <br>
   <h1 class="text-light">Ecouncil online<br>Forum and voting!</i></h1>
   <br>
-    
   <header>
 	      <div id="header-inner">
 		  <a href="index.php" id="logo"></a>
@@ -49,8 +48,6 @@ body {
 			</nav>	
 		  </div>
 	</header>
-
-    
      <br>  
     <h1 class="text-white"> h psifos sou metra! </i></h1>
      <br>         
