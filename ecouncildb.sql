@@ -14,6 +14,9 @@ PRIMARY KEY (user_id)
 CREATE TABLE student (
 student_id     INT(8) NOT NULL REFERENCES users(id),
 student_level  ENUM('student') default 'student',
+countpost	INT(8) NOT NULL default 5,
+count	INT(8) NOT NULL default 1,
+CONSTRAINT solution_at_subject FOREIGN KEY(solution_subject) REFERENCES subject(subject_id) ON DELETE CASCADE ON UPDATE CASCADE,
 PRIMARY KEY (student_id)
 ) TYPE=INNODB;
 
@@ -71,6 +74,15 @@ solution_vote_count INT(8) NOT NULL default 0,
 PRIMARY KEY (solution_id),
 CONSTRAINT solution_at_subject FOREIGN KEY(solution_subject) REFERENCES subject(subject_id) ON DELETE CASCADE ON UPDATE CASCADE,
 CONSTRAINT solution_posted_by FOREIGN KEY(solution_by) REFERENCES student(student_id) ON DELETE CASCADE ON UPDATE CASCADE,
+) TYPE=INNODB;
+
+CREATE TABLE submittedsolutions (
+sub_solution     INT(8) NOT NULL,
+sub_student      INT(8) NOT NULL,
+onsubject	 INT(8) NOT NULL,
+PRIMARY KEY (sub_student,sub_solution),
+CONSTRAINT SUBSOLUTION FOREIGN KEY(sub_solution) REFERENCES solutions(solution_id) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT SUBSTUDENT FOREIGN KEY(sub_student) REFERENCES student(student_id) ON DELETE CASCADE ON UPDATE CASCADE,
 ) TYPE=INNODB;
 
 CREATE TABLE announcements (
