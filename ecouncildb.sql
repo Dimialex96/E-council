@@ -80,6 +80,7 @@ CREATE TABLE submittedsolutions (
 sub_solution     INT(8) NOT NULL,
 sub_student      INT(8) NOT NULL,
 onsubject	 INT(8) NOT NULL,
+countsolutions	 INT(8) NOT NULL default 1,
 PRIMARY KEY (sub_student,sub_solution),
 CONSTRAINT SUBSOLUTION FOREIGN KEY(sub_solution) REFERENCES solutions(solution_id) ON DELETE CASCADE ON UPDATE CASCADE,
 CONSTRAINT SUBSTUDENT FOREIGN KEY(sub_student) REFERENCES student(student_id) ON DELETE CASCADE ON UPDATE CASCADE,
