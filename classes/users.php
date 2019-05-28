@@ -1,42 +1,44 @@
 <?php
 abstract class user {
-  protected $name;
-  protected $surname;
-  protected $username;
-  protected $password;
-  protected $email;
-  protected $id;
-  protected $date;
-  protected $level;
+  protected $username = " ";
+  protected $lastname = " ";
+  protected $firstname = " ";
+  protected $password = " ";
+  protected $email = " ";
+  protected $id = 0;
+  protected $level = " ";
 
   abstract protected function allow();
 
-  function __construct($name,$surname,$username,$password,$email,$id,$date,$level) {
-    $this->name = $name;
-    $this->surname = $surname;
-    $this->password = $password;
-    $this->username = $username;
-    $this->email = $emal;
-    $this->id = $id;
-    $this->date = $date;
-    $this->level = $level;
+  function __construct($username,$lastname,$firstname,$password,$email,$id,$level) {
+    $this->username = $_POST['username'];
+    $this->lastname = $_POST['lastname'];
+    $this->firstname = $_POST['firstname'];
+    $this->password = $_POST['password'];
+    $this->email = $_POST['email'];
+    $this->id = $_POST['id'];
+    $this->level = $_POST['level'];
   }
 }
 
 class Student extends user {
 
-  private $etos;
-  private $AM;
   private $subject_by;
   private $countpost;
+  private $countsolution;
+  private $countvotesolution;
   //connection to database
   $db = mysqli_connect('localhost','root','', 'ecounicldb');
   if (!$db) {
     die("Connection failed: " . mysqli_connect_error());
   }
 
-  function __construct($etos,$AM,$subject_by) {
-    parent::__construct("name","surname","username","password","email","id","level")
+  function __construct($username,$lastname,$firstname,$password,$email,$id,$level,$etos,$subject_by,$countpost,$countsolution,$countvotesolution) {
+    parent::__construct($username,$lastname,$firstname,$password,$email,$id,$level);
+    $this->subject_by = $_POST['subject_by'];
+    $this->countpost = $countpost;
+    $this->countsolution = $countsolution;
+    $this->countvotesolution = $countvotesolution;
   }
   //getter gia to orio tou student sto na parathesei subject
   public function getCountpost() {
