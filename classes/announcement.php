@@ -1,39 +1,40 @@
 <?php
-//announcement
+  //connection to database
+  $db = mysqli_connect('localhost','root','', 'ecounicldb');
+  if (!$db) {
+    die("Connection failed: " . mysqli_connect_error());
+  }
+
 class Announcement {
-  var $announcement_content;
-  var $announcement_category;
-  var $announcement_date;
-  var $announcement_by;
+  private $announcement_id = 0;
+  private $announcement_content = " ";
+  private $announcement_date = GETDATE();
+  private $announcement_by = " ";
+  private $announcement_category = " ";
+  private $kindofannouncement = " ";
 
-  function __construct($content,$date,$category,$publish_day,$publisher)
-  {
-    $this->announcement_content = $announcement_content;
-    $this->announcement_date = $announcement_date;
-    $this->announcement_category = $announcement_category;
-    $this->announcement_by = $announcement_by;
+  function __construct($announcement_id,$announcement_content,$announcement_date,$announcement_by,$announcement_category,$kindofannouncement) {
+    $this->announcement_id = $announcement_id;
+    $this->announcement_content = $_POST['announcement_content'];
+    $this->announcement_date = GETDATE();
+    $this->announcement_by = $_POST['username'];
+    $this->announcement_category = $_POST['announcement_category'];
+    $this->kindofannouncement = $_POST['kindofannouncement'];
   }
-}
-
-//manage_announcement class
-class Manage_announcement extends Announcement {
-  private $announcement_id = $_POST['announcement_id'];
-  private $announcement_content = $_POST['announcement_content'];
-  private $kindofannouncement = $_POST['kindofannouncement'];
-  private $option = $_POST['option'];
-
-  public function __construct()
-  {
-    parent::__construct("content","date","category","publish_day","publisher")
-  }
-
-  public function show_options()
-  {
+  
+  public function show_options() {
     header("Location: announcements.php");
   }
+  
+  public function select_options($option) {
+    if ($option = 'add') {
+      header("Location: Add_announcement.php");
+    } else {
+      header("Location: Edit_announcement.php"); // to edit exei modify kai delete kai prin to select poia
+    }
+  }
 
-  public function check_formatting_announcement($announcement_content,$kindofannouncement)
-  {
+  public function check_formatting_announcement() {
     $stringlength = strlen($announcement_content);
     if ( $stringlength >= 200 ) {
       echo "Too many characters" ;
@@ -41,7 +42,7 @@ class Manage_announcement extends Announcement {
       die();
     } else {
       if ($kindofannouncement == 'new' ) {
-        insert_announcement($announcement_content);
+        insert_announcement($announcement_content,$announcement_date,$announcement_by,$announcement_category);
         die();
       } else ($kindofannouncement == 'old') {
         update_announcement($announcement_content,$announcement_id);
@@ -51,25 +52,7 @@ class Manage_announcement extends Announcement {
     }
   }
 
-  public function insert_announcement($announcement_content,$announcement_date,$announcement_by,$announcement_category)
-  {
-    $announcement_date = GETDATE();
-    $announcement_by = $_POST['username']
-    $query = "INSERT INTO announcements (announcement_content, announcement_date, announcement_by, announcement_category) VALUES ('$announcement_content','$announcement_date','$announcement_by','$announcement_category')";
-    mysqli_query($db, $query);
-  }
-
-  public function select_options($option)
-  {
-    if ($option = 'add') {
-      header("Location: add_announcement.php");
-    } else {
-      header("Location: edit_announcement.php"); // to edit exei modify kai delete kai prin to select poia
-    }
-  }
-
-  public function select_announcement()
-  {
+  public function select_announcement() {
     $query = "SELECT * FROM announcements ORDER BY announcement_date DESC";
     $result = mysqli_query($db, $query);
       if (mysqli_num_rows($result) > 0) {
@@ -78,35 +61,34 @@ class Manage_announcement extends Announcement {
               "&nbsp&nbspDate&nbsp" .$row['announcement_date']."&nbsp&nbspBy&nbsp" .$row['announcement_by']. "<br>" ;
             }
       } else {
-              echo "0 results";
+            echo "0 results";
       }
   }
+  public function insert_announcement($announcement_content,$announcement_date,$announcement_by,$announcement_category) {
+      $query = "INSERT INTO announcements (announcement_content, announcement_date, announcement_by, announcement_category) VALUES ('$announcement_content','$announcement_date','$announcement_by','$announcement_category')";
+      mysqli_query($db, $query);
+  }
 
-  public function update_announcement($announcement_content,$announcement_id)
-  {
+  public function update_announcement($announcement_content,$announcement_id) {
     $query = "UPDATE announcement SET announcements_content = '$announcement_content'  WHERE anouncement_id = '$announcement_id'";
     mysqli_query($db, $query);
   }
 
-  public function delete_announcement($announcement_id)
-  {
+  public function delete_announcement($announcement_id) {
     $query = "DELETE FROM announcements WHERE anouncement_id = '$announcement_id' ";
     mysqli_query($db, $query);
   }
 }
 
-//result
-class Results extends Announcement {
+class Results {
 
-  function __construct()
-  {
-    parent::__construct("content","date","category","publish_day","publisher")
+  function __construct() {
+  
   }
 
-  function show_results()
-  {
+  function show_results() {
       //results
-      echo"results.php"
+      echo"Results.php"
   }
 }
 ?>
