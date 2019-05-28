@@ -35,9 +35,9 @@ class Manage_announcement extends Announcement {
   public function check_formatting_announcement($announcement_content,$kindofannouncement)
   {
     $stringlength = strlen($announcement_content);
-    if ( $stringlength >= "200" ) {
+    if ( $stringlength >= 200 ) {
       echo "Too many characters" ;
-      header("Location: post_announcement.php");
+      header("Location: Post_announcement.php");
       die();
     } else {
       if ($kindofannouncement == 'new' ) {
