@@ -21,18 +21,6 @@ class Announcement {
     $this->announcement_category = $_POST['announcement_category'];
     $this->kindofannouncement = $_POST['kindofannouncement'];
   }
-  
-  public function show_options() {
-    header("Location: announcements.php");
-  }
-  
-  public function select_options($option) {
-    if ($option = 'add') {
-      header("Location: Add_announcement.php");
-    } else {
-      header("Location: Edit_announcement.php"); // to edit exei modify kai delete kai prin to select poia
-    }
-  }
 
   public function check_formatting_announcement() {
     $stringlength = strlen($announcement_content);
