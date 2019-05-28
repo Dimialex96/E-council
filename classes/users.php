@@ -117,14 +117,6 @@ class Student extends user {
                   </html>
 
   function write_solution() {
-                      header('location:write_subject.php')
-                    <?php
-                      if(isset($_POST['save']))
-                         {
-                       $sql = "INSERT INTO solutions (solution_content , solution_date, solution_subject, solution_by)
-                               VALUES ('".$_POST["solution_content"]."',GETDATE(),'".$_POST["solution_subject"]."',this->id,)";
-                         }
-                    ?>
                     <form method="post",action="writesolution.php">
                     <label for="solution_content">= solution_content:</label><br/>
                     <input type="text" solution_content="solution_content"><br/
