@@ -7,22 +7,22 @@
 
 class Session {
   
-  protected $session_id = 0;
-  protected $duration = 0;
-  protected $start_date = date_create("2019-05-19");
-  protected $end_date = date_create("2019-05-19");
-  protected $extension = date_create("2019-05-19");
-  protected $session_status = 0;
-  protected $next_session_id = 0;
-  $extension = $_POST['extension'];
-  $end_date = $_POST['end_date'];
+  private $session_id = 0;
+  private $session_name = " ";
+  private $start_date = GETDATE();
+  private $end_date = GETDATE();
+  private $avtivity_numbers = 0;
+  private $extension = date_create("2019-05-19"); //getdate();
+  private $next_session_id = 0;
 
-  public function __construct($duration,$start_date,$end_date,$activity) {
-    $this->duration = $duration;
-    $this->start_date = $start_date;
-    $this->end_date = $end_date;
-    $this->session_status = $session_status;
-    $this->session_id = $session_id;
+  public function __construct($session_id,$session_name,$start_date,$end_date,$activity_numbers,$extension,$next_session_id) {
+    $this->session_id = $_POST['session_id'];
+    $this->session_name = $session_name ; 
+    $this->start_date = GETDATE();
+    $this->end_date = $_POST['end_date'];
+    $this->activity_numbers = $activity_numbers;
+    $this->extension = $_POST['extension'];
+    $this->next_session_id = $next_session_id;
   }
   //xroniki epektasi tou trexon session kai enimerosi tis start date tou epomenou
   public function update_session ($session_id,$extension,$end_date) {
@@ -36,17 +36,17 @@ class Session {
   }
   //anakatefthinsi sto energo session
   public function redirect_to_active_session () {
-    $query = "SELECT session_id FROM sessions WHERE session_status = '1'";
+    $query = "SELECT session_id FROM sessions WHERE activity_numbers = '1'";
     $results = mysqli_query($db, $query);
     while($row = mysql_fetch_array($results, MYSQL_BOTH) {
       $session_id .= $row['session_id'];
     }
     if ($session_id == 0) {
-      header('forum_session.php');
+      header("Location: Post_subject.php");
     } elseif ($session_id == 1) {
-      header('post_solution.php');
+      header("Location: Post_solution.php");  
     } else {
-      header('vote_solution.php');
+      header("Location: Vote_solution.php");
     }
     die();
   }
@@ -65,7 +65,7 @@ class Session {
   }
   //epistrofi tou energou session
   public function session_status () {
-     $query = "SELECT * FROM sessions WHERE session_status = '1' ";
+     $query = "SELECT * FROM sessions WHERE activity_numbers = '1' ";
      $result = mysqli_query($db, $query);
       if (mysqli_num_rows($result) == 1) {
             while($row = mysqli_fetch_assoc($result)) {
@@ -95,7 +95,7 @@ class Council_Session {
   //elegxos periexomenou tou solution an teirei tis prodiagrafes(ligotero apo 500 xaraktires)
   public function check_formatting_solution() {
     $stringlength = strlen($solution_content);
-    if ( $stringlength >= "500" ) {
+    if ( $stringlength >= 500 ) {
       echo "Too many characters" ;
       header("Location: Post_solution.php");
       die();
@@ -158,7 +158,7 @@ public class Subject {
   //elegxos periexomenou tou subject an tirei tis prodiagrafes(ligotero apo 300 xaraktires)
   public function check_formatting_subject() {
     $stringlength = strlen($subject_description);
-    if ( $stringlength >= "300" ) {
+    if ( $stringlength >= 300 ) {
       echo "Too many characters";
       header("Location: Post_subject.php");
       die();
@@ -194,7 +194,7 @@ class Comment {
   //elegxos periexomenou tou comment an teirei tis prodiagrafes(ligotero apo 200 xaraktires)
   public function check_formatting_subject() {
     $stringlength = strlen($subject_description);
-    if ( $stringlength >= "200" ) {
+    if ( $stringlength >= 200 ) {
       echo "Too many characters" ;
       header("Location: Post_comment.php");
       die();
