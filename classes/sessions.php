@@ -127,12 +127,11 @@ class Council_Session {
     $result = mysqli_query($db, $query);
     if (mysqli_num_rows($result) > 0) {
       while($row = mysqli_fetch_assoc($result)) {
-        echo "subject_name: " . $row["subject_name"]. "<br>""subject_description" .$row['subject_description']. "&nbsp&nbspΛύση:&nbsp" .$row['solution_content'].
-        "<br>" ;
+        echo "subject_name: " . $row["subject_name"]. "<br>""subject_description" .$row['subject_description']. "&nbsp&nbspΛύση:&nbsp" .$row['solution_content']. "<br>" ;
        }
-      } else {
-        echo "0 results";
-      }
+    } else {
+      echo "0 results";
+    }
   }
 
 public class Subject {
