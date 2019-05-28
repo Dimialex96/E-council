@@ -25,10 +25,10 @@ abstract class user {
 
 class Student extends user {
 
-  protected $etos;
-  protected $AM;
-  protected $subject_by;
-  protected $countpost;
+  private $etos;
+  private $AM;
+  private $subject_by;
+  private $countpost;
   //connection to database
   $db = mysqli_connect('localhost','root','', 'ecounicldb');
   if (!$db) {
