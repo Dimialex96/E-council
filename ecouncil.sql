@@ -48,7 +48,7 @@ CREATE TABLE comments (
   comment_date        DATETIME NOT NULL,
   comment_subject     INT(8) NOT NULL,
   comment_by          INT(8) NOT NULL,
-  comment_check       ENUM('0','1') NOT NULL,
+  comment_checked       ENUM('0','1') NOT NULL,
   PRIMARY KEY (post_id),
   CONSTRAINT comment_has_subject FOREIGN KEY(comment_subject) REFERENCES subjects(subject_id) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT comment_postes_by FOREIGN KEY(comment_by) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
