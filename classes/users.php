@@ -151,8 +151,8 @@ class Student extends user {
 
 class Admin extends user {
 
-  function __construct() {
-    parent::__construct("name","surname","username","password","email","id")
+  function __construct($username,$lastname,$firstname,$password,$email,$id,$level,$etos,$subject_by,$countpost,$countsolution,$countvotesolution) {
+  parent::__construct($username,$lastname,$firstname,$password,$email,$id,$level);
   }
 
   function selection() {
