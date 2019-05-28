@@ -15,7 +15,7 @@ CREATE TABLE users (
 CREATE TABLE student (
   student_id          INT(8) NOT NULL REFERENCES users(id),
   student_level       ENUM('student') default 'student',
-  countpost	          INT(8) NOT NULL default 5,
+  countpost	      INT(8) NOT NULL default 5,
   count	              INT(8) NOT NULL default 1,
   PRIMARY KEY (student_id),
   CONSTRAINT solution_at_subject FOREIGN KEY(solution_subject) REFERENCES subject(subject_id) ON DELETE CASCADE ON UPDATE CASCADE
