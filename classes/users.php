@@ -1,5 +1,4 @@
 <?php
-// user
 abstract class user {
   protected $name;
   protected $surname;
