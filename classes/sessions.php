@@ -178,37 +178,36 @@ public class Subject {
           
 class Comment {
 
-  private $subject_description;
-  private $subject_date;
-  private $subject_session;
-  private $subject_by;
-  private $subject_cat;
-  private $subject_name ;
+  private $comment_id = 0;
+  private $comment_content = " ";
+  private $comment_date = GETDATE();
+  private $comment_by = " ";
+  private $comment_subject = 0;
+  private $comment_checked = 0;
 
-  public function __construct($duration,$start_date,$end_date,$activity,$subject_description,$subject_date,$subject_session,$subject_by,$subject_cat,$subject_name) {
-    parent::__construct("duration","start_date","end_date","activity");
-    $this->$subject_description = $_POST['subject_description'];
-    $this->$subject_date = GETDATE();
-    $this->$subject_session= $_POST['subject_session'];
-    $this->$subject_by = $_POST['username'];
-    $this->$subject_cat = $_POST['category'];
-    $this->$subject_name = = $_POST['subject_name'];
+  public function __construct($comment_id,$comment_content,$comment_date,$comment_by,$comment_subject,$comment_checked) {
+    $this->comment_id = $comment_id;
+    $this->comment_content = $_POST['comment_content'];
+    $this->comment_date = GETDATE();
+    $this->comment_by = $_POST['username'];
+    $this->comment_subject = $_POST['subject_id'];
+    $this->comment_checked = = $comment_checked;
   }
-  //elegxos periexomenou tou subject an teirei tis prodiagrafes(ligotero apo 300 xaraktires)
-  public function check_formatting_subject($subject_description) {
+  //elegxos periexomenou tou comment an teirei tis prodiagrafes(ligotero apo 200 xaraktires)
+  public function check_formatting_subject() {
     $stringlength = strlen($subject_description);
-    if ( $stringlength >= "300" ) {
+    if ( $stringlength >= "200" ) {
       echo "Too many characters" ;
-      header("Location: post_subject.php");
+      header("Location: Post_comment.php");
       die();
     } else {
-        insert_subject($subject_description,$subject_name,$subject_cat,$subject_by,$subject_session);
+        insert_comment($comment_content,$comment_by,$comment_subject);
         die();
     }
   }
-  //eisagogi tou neou subject sto pedio tou forum
-  public function insert_subject($subject_description,$subject_name,$subject_cat,$subject_by,$subject_session) {
-    $query = "INSERT INTO subjects (subject_description, subject_date, subject_by, subject_name, subject_cat,subject_session ) VALUES ('$subject_description','$subject_date','$subject_by','$subject_name','$subject_cat','$subject_session')";
+  //eisagogi tou neou comment sto pedio tou forum
+  public function insert_comment($comment_content,$comment_by,$comment_subject) {
+    $query = "INSERT INTO comments (comment_content, comment_date, comment_by, comment_subject, comment_checked) VALUES ('$comment_content','$comment_date','$comment_by','$comment_subject','$comment_checked')";
     mysqli_query($db, $query);
   }
 }
