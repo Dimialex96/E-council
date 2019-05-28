@@ -14,10 +14,10 @@ CREATE TABLE users (
 CREATE TABLE student (
   student_id          INT(8) NOT NULL,
   countpost	      INT(8) NOT NULL default 5,
-  count	              INT(8) NOT NULL default 1,
+  countsolution	      INT(8) NOT NULL default 1,
+  countvotesolution   INT(8) NOT NULL default 1,
   PRIMARY KEY (student_id),
-  CONSTRAINT user_student_id FOREIGN KEY(student_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT solution_at_subject FOREIGN KEY(solution_subject) REFERENCES subject(subject_id) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT user_student_id FOREIGN KEY(student_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) TYPE=INNODB;
 
 CREATE TABLE categories (
