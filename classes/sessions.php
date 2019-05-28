@@ -147,7 +147,6 @@ public class Subject {
   private $subject_checked = 0 ;
   private $subject_vote_count = 0;
   
-
   public function __construct($subject_description,$subject_date,$subject_by,$subject_cat,$subject_name,$subject_id,$subject_checked,$subject_vote_count) {
     $this->subject_description = $_POST['subject_description'];
     $this->subject_date = GETDATE();
@@ -176,6 +175,7 @@ public class Subject {
     mysqli_query($db, $query);
   }
 }
+          
 class Comment {
 
   private $subject_description;
