@@ -57,12 +57,11 @@ CREATE TABLE comments (
 CREATE TABLE sessions (
   session_id         INT(8) NOT NULL AUTO_INCREMENT,
   session_name       ENUM('Forum','Post_Solution','Vote_Solution'),
-  duration           DATEDIFF NOT NULL,
-  extention          DATEDIFF NOT NULL,
   start_date         DATETIME NOT NULL,
   end_date           DATETIME NOT NULL,
   activity_numbers   ENUM('0','1') NOT NULL,
-  PRIMARY KEY (post_id)
+  extention          DATEDIFF NOT NULL,
+  PRIMARY KEY (session_id)
 ) TYPE=INNODB;
 
 CREATE TABLE solutions (
