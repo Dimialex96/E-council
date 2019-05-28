@@ -1,23 +1,23 @@
 --database for ecouncil version 1.0
 CREATE TABLE users (
   user_id             INT(8) NOT NULL AUTO_INCREMENT,
-  user_name           VARCHAR(30) NOT NULL,
+  user_username       VARCHAR(30) NOT NULL,
   user_pass           VARCHAR(255) NOT NULL,
   user_firstname      VARCHAR(255) NOT NULL,
   user_lastname	      VARCHAR(255) NOT NULL,
   user_email          VARCHAR(255) NOT NULL,
-  user_date           DATETIME NOT NULL,
   user_level          ENUM('administrator', 'student', 'professor', 'moderator'),
-  UNIQUE INDEX user_name_unique (user_name),
+  UNIQUE INDEX user_name_unique (user_username),
   PRIMARY KEY (user_id)
 ) TYPE=INNODB;
 
 CREATE TABLE student (
-  student_id          INT(8) NOT NULL REFERENCES users(id),
+  student_id          INT(8) NOT NULL,
   student_level       ENUM('student') default 'student',
   countpost	      INT(8) NOT NULL default 5,
   count	              INT(8) NOT NULL default 1,
   PRIMARY KEY (student_id),
+  CONSTRAINT user_student_id FOREIGN KEY(student_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT solution_at_subject FOREIGN KEY(solution_subject) REFERENCES subject(subject_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) TYPE=INNODB;
 
@@ -37,7 +37,7 @@ CREATE TABLE subjects (
   subject_description VARCHAR(255) NOT NULL,
   subject_checked     ENUM('0','1') NOT NULL default '0',
   subject_vote_count  INT(8) NOT NULL default 0,
-  PRIMARY KEY (topic_id),
+  PRIMARY KEY (subject_id),
   CONSTRAINT subject_has_category FOREIGN KEY(subject_cat) REFERENCES categories(cat_id)ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT subject_posted_by FOREIGN KEY(subject_by) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) TYPE=INNODB;
@@ -48,7 +48,7 @@ CREATE TABLE comments (
   comment_date        DATETIME NOT NULL,
   comment_subject     INT(8) NOT NULL,
   comment_by          INT(8) NOT NULL,
-  comment_checked       ENUM('0','1') NOT NULL,
+  comment_checked     ENUM('0','1') NOT NULL,
   PRIMARY KEY (post_id),
   CONSTRAINT comment_has_subject FOREIGN KEY(comment_subject) REFERENCES subjects(subject_id) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT comment_postes_by FOREIGN KEY(comment_by) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
