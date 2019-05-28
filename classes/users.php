@@ -55,7 +55,7 @@ class Student extends user {
       $countpost = $countpost - 1;
       $query = "UPDATE student SET countpost = '$countpost'  WHERE student_id = '$student_id'";
       mysqli_query($db, $query);
-      header("Location: post_subject.php");
+      header("Location: Post_subject.php");
     } else {
       echo "Den epitrepete na parathesete thema, exete ipervei to orio";
     }
@@ -75,7 +75,7 @@ class Student extends user {
       $countsolution = $countsolution - 1;
       $query = "UPDATE submittedsolutions SET countsolution = '$countsolution'  WHERE sub_student = '$student_id' AND onsubject = '$subject_id'";
       mysqli_query($db, $query);
-      header("Location: post_solution.php");
+      header("Location: Post_solution.php");
     } else {
       echo "Den epitrepete na parathesete lisi, exete ipervei to orio";
     }
@@ -95,9 +95,9 @@ class Student extends user {
       $countvotesolution = $countvotesolution - 1;
       $query = "UPDATE student SET countpost = '$countvotesolution'  WHERE student_id = '$student_id'";
       mysqli_query($db, $query);
-      header("Location: vote_solution.php");
+      header("Location: Vote_solution.php");
     } else {
-      echo "Den epitrepete na psifisi alli lisi, exete ipervei to orio";
+      echo "Den epitrepete na psifisi allo sinolo liseon, exete idi psifisei";
     }
   }
 
