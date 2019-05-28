@@ -78,13 +78,14 @@ class Session {
   }
 
 class Council_Session {
-  private $solution_vote_count = 0;
   private $solution_id = 0;
-  private $solution_content='';
-  private $solution_date;
-  private $solution_by;
+  private $solution_content = " ";
+  private $solution_date = GETDATE();
+  private $solution_subject = 0;
+  private $solution_by = " ";
+  private $solution_vote_count = 0;
 
-  public function __construct($duration,$start_date,$end_date,$activity) {
+  public function __construct($solution_id,$solution_
       this->$solution_vote_count = $_POST['solution_vote_count'];
       this->$solution_id = $_POST['solution_id'];
       this->$solution_content = $_POST['solution_content'];
