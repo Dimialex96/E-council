@@ -136,7 +136,47 @@ class Council_Session extends Session {
       }
   }
 
-class Forum_Session extends Session {
+public class Subject {
+
+  private $subject_description = " ";
+  private $subject_date = GETDATE();
+  private $subject_by = " ";
+  private $subject_cat = " ";
+  private $subject_name = " ";
+  private $subject_id = 0;
+  private $subject_checked = 0 ;
+  private $subject_vote_count = 0;
+  
+
+  public function __construct($subject_description,$subject_date,$subject_by,$subject_cat,$subject_name,$subject_id,$subject_checked,$subject_vote_count) {
+    $this->subject_description = $_POST['subject_description'];
+    $this->subject_date = GETDATE();
+    $this->subject_by = $_POST['username'];
+    $this->subject_cat = $_POST['category'];
+    $this->subject_name = $_POST['subject_name'];
+    $this->subject_id = $subject_id;
+    $this->subject_checked = $subject_checked;
+    $this->subject_vote_count = $subject_vote_count;
+  }
+  //elegxos periexomenou tou subject an tirei tis prodiagrafes(ligotero apo 300 xaraktires)
+  public function check_formatting_subject() {
+    $stringlength = strlen($subject_description);
+    if ( $stringlength >= "300" ) {
+      echo "Too many characters";
+      header("Location: Post_subject.php");
+      die();
+    } else {
+        insert_subject($subject_description,$subject_name,$subject_cat,$subject_by);
+        die();
+    }
+  }
+  //eisagogi tou neou subject sto pedio tou forum
+  public function insert_subject($subject_description,$subject_name,$subject_cat,$subject_by) {
+    $query = "INSERT INTO subjects (subject_description, subject_date, subject_by, subject_name, subject_cat) VALUES ('$subject_description','$subject_date','$subject_by','$subject_name','$subject_cat')";
+    mysqli_query($db, $query);
+  }
+}
+class Comment {
 
   private $subject_description;
   private $subject_date;
