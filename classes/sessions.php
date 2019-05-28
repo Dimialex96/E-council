@@ -1,12 +1,12 @@
 <?php
-
-class Session {
   //connection to database
   $db = mysqli_connect('localhost','root','', 'ecounicldb');
   if (!$db) {
     die("Connection failed: " . mysqli_connect_error());
   }
 
+class Session {
+  
   protected $session_id = 0;
   protected $duration = 0;
   protected $start_date = date_create("2019-05-19");
@@ -77,7 +77,7 @@ class Session {
       }
   }
 
-class Council_Session extends Session {
+class Council_Session {
   private $solution_vote_count = 0;
   private $solution_id = 0;
   private $solution_content='';
@@ -85,7 +85,6 @@ class Council_Session extends Session {
   private $solution_by;
 
   public function __construct($duration,$start_date,$end_date,$activity) {
-    parent::__construct("duration","start_date","end_date","activity")
       this->$solution_vote_count = $_POST['solution_vote_count'];
       this->$solution_id = $_POST['solution_id'];
       this->$solution_content = $_POST['solution_content'];
@@ -94,11 +93,11 @@ class Council_Session extends Session {
       this->$solution_subject = $_POST['solution_subject'];
   }
   //elegxos periexomenou tou solution an teirei tis prodiagrafes(ligotero apo 500 xaraktires)
-  public function check_formatting_solution($solution_content) {
+  public function check_formatting_solution() {
     $stringlength = strlen($solution_content);
     if ( $stringlength >= "500" ) {
       echo "Too many characters" ;
-      header("Location: post_solution.php");
+      header("Location: Post_solution.php");
       die();
     } else {
         insert_solution($solution_content,$solution_date,$solution_subject,$solution_by);
