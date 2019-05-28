@@ -77,7 +77,7 @@ class Session {
       }
   }
 
-class Council_Session {
+class Solutions {
   private $solution_id = 0;
   private $solution_content = " ";
   private $solution_date = GETDATE();
@@ -193,8 +193,8 @@ class Comment {
     $this->comment_checked = = $comment_checked;
   }
   //elegxos periexomenou tou comment an teirei tis prodiagrafes(ligotero apo 200 xaraktires)
-  public function check_formatting_subject() {
-    $stringlength = strlen($subject_description);
+  public function check_formatting_comment() {
+    $stringlength = strlen($comment_content);
     if ( $stringlength >= 200 ) {
       echo "Too many characters" ;
       header("Location: Post_comment.php");
