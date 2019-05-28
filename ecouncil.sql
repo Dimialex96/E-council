@@ -13,7 +13,6 @@ CREATE TABLE users (
 
 CREATE TABLE student (
   student_id          INT(8) NOT NULL,
-  student_level       ENUM('student') default 'student',
   countpost	      INT(8) NOT NULL default 5,
   count	              INT(8) NOT NULL default 1,
   PRIMARY KEY (student_id),
