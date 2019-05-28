@@ -35,7 +35,7 @@ class Session {
     die();
   }
   //anakatefthinsi sto energo session
-  public function redirect_to_active_session () {
+  public function redirect_to_active () {
     $query = "SELECT session_id FROM sessions WHERE activity_numbers = '1'";
     $results = mysqli_query($db, $query);
     while($row = mysql_fetch_array($results, MYSQL_BOTH) {
