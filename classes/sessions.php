@@ -85,13 +85,13 @@ class Council_Session {
   private $solution_by = " ";
   private $solution_vote_count = 0;
 
-  public function __construct($solution_id,$solution_
-      this->$solution_vote_count = $_POST['solution_vote_count'];
+  public function __construct($solution_id,$solution_content,$solution_date,$solution_subject,$solution_by,$solution_vote_count) {
       this->$solution_id = $_POST['solution_id'];
       this->$solution_content = $_POST['solution_content'];
       this->$solution_date = GETDATE();
-      this->$solution_by = $_POST['username'];
       this->$solution_subject = $_POST['solution_subject'];
+      this->$solution_by = $_POST['username'];
+      this->$solution_vote_count = $solution_vote_count;    
   }
   //elegxos periexomenou tou solution an teirei tis prodiagrafes(ligotero apo 500 xaraktires)
   public function check_formatting_solution() {
