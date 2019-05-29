@@ -5,7 +5,7 @@
     die("Connection failed: " . mysqli_connect_error());
   }
 
-class Session {
+public class Session {
   
   private $session_id = 0;
   private $session_name = " ";
@@ -25,7 +25,7 @@ class Session {
     $this->next_session_id = $next_session_id;
   }
   //xroniki epektasi tou trexon session kai enimerosi tis start date tou epomenou
-  public function update_session ($session_id,$extension,$end_date) {
+  public function updateSession($session_id,$extension,$end_date) {
     this->$end_date = date('Y-m-d', strtotime($end_date. " + {$extension} days "));
     this->$next_session_id = ($session_id + 1) % 3 ; //ginete me mod3 i praksi dioti ta id ton session ine 3 kai otan to session_id einai 3 theloume na pigenei apo tin arxi
     $query = "UPDATE sessions SET end_date = '$end_date'  WHERE session_id = '$session_id'";
@@ -35,7 +35,7 @@ class Session {
     die();
   }
   //anakatefthinsi sto energo session
-  public function redirect_to_active () {
+  public function redirectToActive() {
     $query = "SELECT session_id FROM sessions WHERE activity_numbers = '1'";
     $results = mysqli_query($db, $query);
     while($row = mysql_fetch_array($results, MYSQL_BOTH) {
@@ -51,7 +51,7 @@ class Session {
     die();
   }
   //emfanisi pliroforion gia ola ta session
-  public function select_session () {
+  public function selectSession() {
     $query = "SELECT * FROM sessions ";
     $result = mysqli_query($db, $query);
       if (mysqli_num_rows($result) > 0) {
@@ -64,7 +64,7 @@ class Session {
       }
   }
   //epistrofi tou energou session
-  public function session_status () {
+  public function sessionStatus() {
      $query = "SELECT * FROM sessions WHERE activity_numbers = '1' ";
      $result = mysqli_query($db, $query);
       if (mysqli_num_rows($result) == 1) {
@@ -77,7 +77,7 @@ class Session {
       }
   }
 
-class Solutions {
+public class Solutions {
   private $solution_id = 0;
   private $solution_content = " ";
   private $solution_date = GETDATE();
@@ -94,7 +94,7 @@ class Solutions {
       this->$solution_vote_count = $solution_vote_count;    
   }
   //elegxos periexomenou tou solution an teirei tis prodiagrafes(ligotero apo 500 xaraktires)
-  public function check_formatting_solution() {
+  public function formatSolution() {
     $stringlength = strlen($solution_content);
     if ( $stringlength >= 500 ) {
       echo "Too many characters" ;
@@ -106,12 +106,12 @@ class Solutions {
     }
   }
   //eisagogi tou neou solution pou anaferete se sigkekrimeno subject
-  public function insert_solution($solution_content,$solution_date,$solution_subject,$solution_by) {
+  public function insertSolution($solution_content,$solution_date,$solution_subject,$solution_by) {
     $query = "INSERT INTO solutions (solution_content, solution_date, solution_subject, solution_by ) VALUES ('$solution_content','$solution_date','$solution_subject','$solution_by')";
     mysqli_query($db, $query);
   }
   //diadikasia afksisis psifou enos solution otan afto psifizete
-  public function update_solution_vote($solution_id) {
+  public function updateSolutionVote($solution_id) {
     $query = "SELECT solution_vote_count FROM solutions WHERE solution_id = '$solution_id'";
     $results = mysqli_query($db, $query);
     while($row = mysql_fetch_array($results, MYSQL_BOTH) {
@@ -122,7 +122,7 @@ class Solutions {
     mysqli_query($db, $query);
   }
   //emfanisi ton 10  subject,mazi me ta solutions tous, me to megalitero plithos apo psifous
-  public function select_solutions() {
+  public function selectSolutions() {
     $query = "SELECT subjects.subject_name , subjects.subject_description , solutions.solutions_content FROM subjects,solutions WHERE subjects.subject_id = solutions.solution_subject
     ORDER BY subjects.subject_vote_count LIMIT 10 , solutions.solution_id DESC ";
     $result = mysqli_query($db, $query);
@@ -157,7 +157,7 @@ public class Subject {
     $this->subject_vote_count = $subject_vote_count;
   }
   //elegxos periexomenou tou subject an tirei tis prodiagrafes(ligotero apo 300 xaraktires)
-  public function check_formatting_subject() {
+  public function formatSubject() {
     $stringlength = strlen($subject_description);
     if ( $stringlength >= 300 ) {
       echo "Too many characters";
@@ -169,13 +169,13 @@ public class Subject {
     }
   }
   //eisagogi tou neou subject sto pedio tou forum
-  public function insert_subject($subject_description,$subject_name,$subject_cat,$subject_by) {
+  public function insertSubject($subject_description,$subject_name,$subject_cat,$subject_by) {
     $query = "INSERT INTO subjects (subject_description, subject_date, subject_by, subject_name, subject_cat) VALUES ('$subject_description','$subject_date','$subject_by','$subject_name','$subject_cat')";
     mysqli_query($db, $query);
   }
 }
           
-class Comment {
+public class Comment {
 
   private $comment_id = 0;
   private $comment_content = " ";
@@ -193,7 +193,7 @@ class Comment {
     $this->comment_checked = = $comment_checked;
   }
   //elegxos periexomenou tou comment an teirei tis prodiagrafes(ligotero apo 200 xaraktires)
-  public function check_formatting_comment() {
+  public function formatComment() {
     $stringlength = strlen($comment_content);
     if ( $stringlength >= 200 ) {
       echo "Too many characters" ;
@@ -205,7 +205,7 @@ class Comment {
     }
   }
   //eisagogi tou neou comment sto pedio tou forum
-  public function insert_comment($comment_content,$comment_by,$comment_subject) {
+  public function insertComment($comment_content,$comment_by,$comment_subject) {
     $query = "INSERT INTO comments (comment_content, comment_date, comment_by, comment_subject, comment_checked) VALUES ('$comment_content','$comment_date','$comment_by','$comment_subject','$comment_checked')";
     mysqli_query($db, $query);
   }
