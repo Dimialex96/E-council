@@ -177,28 +177,60 @@ class Professor extends User {
   }
 }
 
-class Moderator extends user {
+class Moderator extends User {
 
   function __construct() {
     parent::__construct("name","surname","username","password","email","id")
   }
-  
-  function subjectIsAppropriate() {
-  if
+
+  //analoga me tin krisi tou moderator i metabliti subjectok kathorizei an to subject itan katallilo i oxi
+  function subjectIsAppropriate($subjectok,$subject_id) {
+    if ($subjectok == 1) {
+      $query = "UPDATE subjects SET subject_checked = 1 WHERE subject_id = '$subject_id'";
+      mysqli_query($db, $quert);
+      echo "Subject now appropriate";
+    } else {
+      $query = "DELETE FROM subjects WHERE subject_id = '$subject_id'";
+      mysqli_query($db, $quert);
+      echo "Subject deleted successfully";
+    }
   }
-  
-  function subjectIsAppropriate() {
-    $query = "SELECT subject_id,subject_name,subject_description FROM subjects WHERE subject_checked = '0'";
+  //antistoixa me tin parapano methodo elegxei an to comment itan katallilo i oxi
+  function commentIsAppropriate($comment_id,$commentok) {
+    if ($commentok == 1) {
+      $query = "UPDATE comments SET comment_checked = 1 WHERE comment_id = '$comment_id'";
+      mysqli_query($db, $quert);
+      echo "Comment now appropriate";
+    } else {
+      $query = "DELETE FROM comments WHERE comment_id = '$comment_id'";
+      mysqli_query($db, $quert);
+      echo "Subject deleted successfully";
+    }
+  }
+  //epistrefei ola ta subject poy den einai filtrarismena, ean den iparxoun sinexizei kai epistrefei ta comment se subject poy den einai filtrarismena
+  function selectUnfilteredSubjects() {
+    $query = "SELECT subject_id,subject_name,subject_description FROM subjects WHERE subject_checked = '0' ORDER BY subject_id ASC";
     $results = mysqli_query($db, $query);
     if (mysqli_num_rows($result) > 0) {
       while($row = mysqli_fetch_assoc($result)) {
         echo "subject_id: " . $row["subject_id"]. "<br>""subject_name" .$row['subject_name']. "&nbsp&nbspSubject_description&nbsp" .$row['subject_description']. ;
        }
     } else {
-      echo "0 results";
+      echo "All subjects are filtered";
+      echo "Now looking for unfiltered comments on subjects";
+      $query = "SELECT comment_id,comment_content,comment_subject FROM comments WHERE comment_checked = '0' ORDER BY comment_subject ASC";
+      $results = mysqli_query($db, $query);
+      if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+          echo "comment_id: " . $row["comment_id"]. "<br>""comment_content" .$row['comment_content']. "&nbsp&nbspComment from subject:&nbsp" .$row['comment_subject']. ;
+         }
+      } else {
+        echo "All comments are filtered ";
+      }
     }
   }
-
+  //elegxei an kapoio subject einai diplotipo se periexomeno me kapoio allo.anaferete se
+  //ksexwristous xristes kai apaitei enan algorithmo posostou omoiotitas
   function subjectDuplicate() {
     //if-else
   }

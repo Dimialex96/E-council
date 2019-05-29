@@ -72,9 +72,9 @@ class Results {
   private $result_id = 0;
   private $result_content = " ";
   private $aresult_date = GETDATE();
-  
+
   function __construct() {
-  
+
   }
 
   function showResults() {
