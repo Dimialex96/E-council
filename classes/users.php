@@ -178,7 +178,15 @@ class Professor extends User {
 }
 
 class Moderator extends User {
-
+  private $subject_id = 0;
+  private $subject_name = " ";
+  private $subject_description = " ";
+  private $subjectok = 0;
+  private $comment_id = 0;
+  private $comment_content = " ";
+  private $comment_subject = 0;
+  private $commentok = 0;
+  
   function __construct() {
     parent::__construct("name","surname","username","password","email","id")
   }
