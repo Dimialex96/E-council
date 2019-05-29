@@ -1,4 +1,10 @@
 <?php
+  //connection to database
+  $db = mysqli_connect('localhost','root','', 'ecounicldb');
+  if (!$db) {
+    die("Connection failed: " . mysqli_connect_error());
+  }
+
 abstract class User {
   protected $username = " ";
   protected $lastname = " ";
@@ -176,9 +182,21 @@ class Moderator extends user {
   function __construct() {
     parent::__construct("name","surname","username","password","email","id")
   }
-
+  
   function subjectIsAppropriate() {
-      //if-else
+  if
+  }
+  
+  function subjectIsAppropriate() {
+    $query = "SELECT subject_id,subject_name,subject_description FROM subjects WHERE subject_checked = '0'";
+    $results = mysqli_query($db, $query);
+    if (mysqli_num_rows($result) > 0) {
+      while($row = mysqli_fetch_assoc($result)) {
+        echo "subject_id: " . $row["subject_id"]. "<br>""subject_name" .$row['subject_name']. "&nbsp&nbspSubject_description&nbsp" .$row['subject_description']. ;
+       }
+    } else {
+      echo "0 results";
+    }
   }
 
   function subjectDuplicate() {
