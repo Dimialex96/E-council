@@ -7,7 +7,7 @@ session_start();
   if (isset($_GET['logout'])) {
   	session_destroy();
   	unset($_SESSION['user_name']);
-  	header("location: loginmoderator.php");
+  	header("location: loginadmin.php");
   }
 ?>
 
