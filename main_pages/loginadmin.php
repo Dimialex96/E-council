@@ -1,4 +1,4 @@
-<?php include('/////////////////serveradmin.php') ?> ///το αρχειο sereradmin.php δεν εχει υλοποιηθει
+<?php include('serveradmin.php') ?> //το αρχειο sereradmin.php δεν εχει υλοποιηθει
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,8 +17,6 @@
          background-repeat: no-repeat;
          position: relative;}
       </style>
-
-  
   	<h2>Είσοδος Administrator</h2>
 
   <form method="post" action="loginadmin.php">
