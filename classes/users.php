@@ -16,7 +16,7 @@ abstract class User {
 
   abstract protected function allow();
 
-  function __construct($username,$lastname,$firstname,$password,$email,$id,$level) {
+  public function __construct($username,$lastname,$firstname,$password,$email,$id,$level) {
     $this->username = $_POST['username'];
     $this->lastname = $_POST['lastname'];
     $this->firstname = $_POST['firstname'];
@@ -34,7 +34,7 @@ class Student extends User {
   private $countsolution;
   private $countvotesolution;
 
-  function __construct($username,$lastname,$firstname,$password,$email,$id,$level,$etos,$subject_by,$countpost,$countsolution,$countvotesolution) {
+  public function __construct($username,$lastname,$firstname,$password,$email,$id,$level,$etos,$subject_by,$countpost,$countsolution,$countvotesolution) {
     parent::__construct($username,$lastname,$firstname,$password,$email,$id,$level);
     $this->subject_by = $_POST['subject_by'];
     $this->countpost = $countpost;
@@ -102,33 +102,6 @@ class Student extends User {
     }
   }
 
-  //αυτή η φόρμα κανονικα 'επρεπε να μπεί σε μια php αλλά δν έχει υλοποιήθεί
-                      <form method="post",action="writesubject.php">
-                      <label for="subject_name">= subject_name:</label><br/>
-                      <input type="text" subject_name="subject_name"><br/
-                      <label for="subject_cat">= subject_cat:</label><br/>
-                      <input type="text" subject_cat="subject_cat"><br/
-                       <label for="subject_description">= subject_description:</label><br/>
-                      <input type="text" subject_description="subject_descrition"><br/
-                       <label for="subject_session">= subject_session:</label><br/>
-                      <input type="text" subject_session="subject_session"><br/
-                      <button type="submit" name="save">save</button>
-                      </form>
-                  </body>
-                  </html>
-
-  function writeSolution() {
-                    <form method="post",action="writesolution.php">
-                    <label for="solution_content">= solution_content:</label><br/>
-                    <input type="text" solution_content="solution_content"><br/
-                    <label for="solution_subject">= solution_subject:</label><br/>
-                    <input type="text" solution_subject="solution_subject"><br/
-                    <button type="submit" name="save">save</button>
-                    </form>
-                </body>
-                </html>
-  }
-
   function confirm() {
 
   }
@@ -150,36 +123,18 @@ class Student extends User {
   }
 }
 
-class Admin extends User {
-
-  function __construct() {
-  parent::__construct($username,$lastname,$firstname,$password,$email,$id,$level);
-  }
-}
-
-class Professor extends User {
-
-  function __construct() {
-    parent::__construct($username,$lastname,$firstname,$password,$email,$id,$level)
-  }
-
-  function postSocialHourSubject() {
-
-  }
-}
-
 class Moderator extends User {
   private $subjectok = 0;
   private $commentok = 0;
   
-  function __construct() {
+  public function __construct() {
     parent::__construct($username,$lastname,$firstname,$password,$email,$id,$level);
     $this->subjectok = $_POST['subjectok'];
     $this->commentok = $_POST['commentok'];     
   }
 
   //analoga me tin krisi tou moderator i metabliti subjectok kathorizei an to subject itan katallilo i oxi
-  function subjectIsAppropriate($subjectok,$id) {
+  public function subjectIsAppropriate($subjectok,$id) {
     if ($subjectok == 1) {
       $query = "UPDATE subjects SET subject_checked = 1 WHERE subject_id = '$id'";
       mysqli_query($db, $quert);
@@ -191,7 +146,7 @@ class Moderator extends User {
     }
   }
   //antistoixa me tin parapano methodo elegxei an to comment itan katallilo i oxi
-  function commentIsAppropriate($id,$commentok) {
+  public function commentIsAppropriate($id,$commentok) {
     if ($commentok == 1) {
       $query = "UPDATE comments SET comment_checked = 1 WHERE comment_id = '$id'";
       mysqli_query($db, $quert);
@@ -203,7 +158,7 @@ class Moderator extends User {
     }
   }
   //epistrefei ola ta subject poy den einai filtrarismena, ean den iparxoun sinexizei kai epistrefei ta comment se subject poy den einai filtrarismena
-  function selectUnfilteredSubjects() {
+  public function selectUnfilteredSubjects() {
     $query = "SELECT subject_id,subject_name,subject_description FROM subjects WHERE subject_checked = '0' ORDER BY subject_id ASC";
     $results = mysqli_query($db, $query);
     if (mysqli_num_rows($result) > 0) {
@@ -226,8 +181,26 @@ class Moderator extends User {
   }
   //elegxei an kapoio subject einai diplotipo se periexomeno me kapoio allo.anaferete se
   //ksexwristous xristes kai apaitei enan algorithmo posostou omoiotitas
-  function subjectDuplicate() {
+  public function subjectDuplicate() {
     //if-else
+  }
+}
+          
+class Admin extends User {
+
+  public function __construct() {
+  parent::__construct($username,$lastname,$firstname,$password,$email,$id,$level);
+  }
+}
+
+class Professor extends User {
+
+  public function __construct() {
+    parent::__construct($username,$lastname,$firstname,$password,$email,$id,$level)
+  }
+
+  function postSocialHourSubject() {
+
   }
 }
 ?>
