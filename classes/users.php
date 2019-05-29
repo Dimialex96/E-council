@@ -178,39 +178,34 @@ class Professor extends User {
 }
 
 class Moderator extends User {
-  private $subject_id = 0;
-  private $subject_name = " ";
-  private $subject_description = " ";
   private $subjectok = 0;
-  private $comment_id = 0;
-  private $comment_content = " ";
-  private $comment_subject = 0;
   private $commentok = 0;
   
   function __construct() {
     parent::__construct("name","surname","username","password","email","id")
+      
   }
 
   //analoga me tin krisi tou moderator i metabliti subjectok kathorizei an to subject itan katallilo i oxi
-  function subjectIsAppropriate($subjectok,$subject_id) {
+  function subjectIsAppropriate($subjectok,$id) {
     if ($subjectok == 1) {
-      $query = "UPDATE subjects SET subject_checked = 1 WHERE subject_id = '$subject_id'";
+      $query = "UPDATE subjects SET subject_checked = 1 WHERE subject_id = '$id'";
       mysqli_query($db, $quert);
       echo "Subject now appropriate";
     } else {
-      $query = "DELETE FROM subjects WHERE subject_id = '$subject_id'";
+      $query = "DELETE FROM subjects WHERE subject_id = '$id'";
       mysqli_query($db, $quert);
       echo "Subject deleted successfully";
     }
   }
   //antistoixa me tin parapano methodo elegxei an to comment itan katallilo i oxi
-  function commentIsAppropriate($comment_id,$commentok) {
+  function commentIsAppropriate($id,$commentok) {
     if ($commentok == 1) {
-      $query = "UPDATE comments SET comment_checked = 1 WHERE comment_id = '$comment_id'";
+      $query = "UPDATE comments SET comment_checked = 1 WHERE comment_id = '$id'";
       mysqli_query($db, $quert);
       echo "Comment now appropriate";
     } else {
-      $query = "DELETE FROM comments WHERE comment_id = '$comment_id'";
+      $query = "DELETE FROM comments WHERE comment_id = '$id'";
       mysqli_query($db, $quert);
       echo "Subject deleted successfully";
     }
@@ -230,7 +225,7 @@ class Moderator extends User {
       $results = mysqli_query($db, $query);
       if (mysqli_num_rows($result) > 0) {
         while($row = mysqli_fetch_assoc($result)) {
-          echo "comment_id: " . $row["comment_id"]. "<br>""comment_content" .$row['comment_content']. "&nbsp&nbspComment from subject:&nbsp" .$row['comment_subject']. ;
+          echo "comment_id: " . $row["comment_id"]. "<br>""comment_content" .$row["comment_content"]. "&nbsp&nbspComment from subject:&nbsp" .$row['comment_subject']. ;
          }
       } else {
         echo "All comments are filtered ";
