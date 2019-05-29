@@ -1,5 +1,5 @@
 <?php
-abstract class user {
+abstract class User {
   protected $username = " ";
   protected $lastname = " ";
   protected $firstname = " ";
@@ -21,7 +21,7 @@ abstract class user {
   }
 }
 
-class Student extends user {
+class Student extends User {
 
   private $subject_by;
   private $countpost;
@@ -41,7 +41,7 @@ class Student extends user {
     $this->countvotesolution = $countvotesolution;
   }
   //getter gia to orio tou student sto na parathesei subject
-  public function getCountpost() {
+  public function getCountPost() {
     $query = "SELECT countpost FROM student WHERE student_id = '$student_id'";
     $results = mysqli_query($db, $query);
     while($row = mysql_fetch_array($results, MYSQL_BOTH) {
@@ -61,7 +61,7 @@ class Student extends user {
     }
   }
   //getter gia to orio tou student sto na parathesei solution
-  public function getCountsolution() {
+  public function getCountSolution() {
     $query = "SELECT countsolution FROM submittedsolutions WHERE sub_student = '$student_id' AND onsubject = '$subject_id' ";
     $results = mysqli_query($db, $query);
     while($row = mysql_fetch_array($results, MYSQL_BOTH) {
@@ -81,7 +81,7 @@ class Student extends user {
     }
   }
   //getter gia to orio tou student sto na psifisei solution
-  public function getCountvotesolution() {
+  public function getCountVoteSolution() {
     $query = "SELECT countvotesolution FROM student WHERE student_id = '$student_id'";
     $results = mysqli_query($db, $query);
     while($row = mysql_fetch_array($results, MYSQL_BOTH) {
@@ -116,7 +116,7 @@ class Student extends user {
                   </body>
                   </html>
 
-  function write_solution() {
+  function writeSolution() {
                     <form method="post",action="writesolution.php">
                     <label for="solution_content">= solution_content:</label><br/>
                     <input type="text" solution_content="solution_content"><br/
@@ -132,24 +132,24 @@ class Student extends user {
 
   }
 
-  function submit_vote() {
+  function submitVote() {
 
   }
 
-  function validate_vote() {
+  function validateVote() {
 
   }
 
-  function insert_search_parameters() {
+  function insertSearchParameters() {
 
   }
 
-  function select_result() {
+  function selectResult() {
 
   }
 }
 
-class Admin extends user {
+class Admin extends User {
 
   function __construct($username,$lastname,$firstname,$password,$email,$id,$level,$etos,$subject_by,$countpost,$countsolution,$countvotesolution) {
   parent::__construct($username,$lastname,$firstname,$password,$email,$id,$level);
@@ -160,13 +160,13 @@ class Admin extends user {
   }
 }
 
-class Professor extends user {
+class Professor extends User {
 
   function __construct() {
     parent::__construct("name","surname","username","password","email","id")
   }
 
-  function post_social_hour_subject() {
+  function postSocialHourSubject() {
 
   }
 }
@@ -177,11 +177,11 @@ class Moderator extends user {
     parent::__construct("name","surname","username","password","email","id")
   }
 
-  function subject_is_appropriate() {
+  function subjectIsAppropriate() {
       //if-else
   }
 
-  function subject_duplicate() {
+  function subjectDuplicate() {
     //if-else
   }
 }
