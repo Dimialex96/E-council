@@ -119,12 +119,12 @@ public class Comment {
       header("Location: Post_comment.php");
       die();
     } else {
-        insert_comment($content,$by,$comment_subject);
+        insert($content,$by,$comment_subject);
         die();
     }
   }
   //eisagogi tou neou comment sto pedio tou forum
-  public function insertComment($content,$by,$comment_subject) {
+  public function insert($content,$by,$comment_subject) {
     $query = "INSERT INTO comments (comment_content, comment_date, comment_by, comment_subject, comment_checked) VALUES ('$comment_content','$comment_date','$comment_by','$comment_subject','$comment_checked')";
     mysqli_query($db, $query);
   }
