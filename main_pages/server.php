@@ -22,7 +22,7 @@ if (isset($_POST['login_user'])) {
   	if (mysqli_num_rows($results) == 1) {
   	  $_SESSION['email'] = $email;
   	  $_SESSION['success'] = "";
-  	  header('location: //////////index.php');
+  	  header('Location: index.php');
   	} else {
   		array_push($errors, "Λανθασμένος συνδιασμός user_email/user_password");
   	}
