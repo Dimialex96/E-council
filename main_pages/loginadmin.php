@@ -18,9 +18,7 @@
          position: relative;}
       </style>
   	<h2>Είσοδος Administrator</h2>
-
-  <form method="post" action="loginadmin.php">
-  	
+  <form method="post" action="loginadmin.php">	
   	<div class="input">
   		<label>Username</label>
   		<input type="text" name="user_name" >
