@@ -22,7 +22,7 @@ class Announcement {
     $this->kindofannouncement = $_POST['kindofannouncement'];
   }
 
-  public function check_formatting_announcement() {
+  public function check_formattingAnnouncement() {
     $stringlength = strlen($announcement_content);
     if ( $stringlength >= 200 ) {
       echo "Too many characters" ;
@@ -40,7 +40,7 @@ class Announcement {
     }
   }
 
-  public function select_announcement() {
+  public function selectAnnouncement() {
     $query = "SELECT * FROM announcements ORDER BY announcement_date DESC";
     $result = mysqli_query($db, $query);
       if (mysqli_num_rows($result) > 0) {
@@ -52,29 +52,32 @@ class Announcement {
             echo "0 results";
       }
   }
-  public function insert_announcement($announcement_content,$announcement_date,$announcement_by,$announcement_category) {
+  public function insertAnnouncement($announcement_content,$announcement_date,$announcement_by,$announcement_category) {
       $query = "INSERT INTO announcements (announcement_content, announcement_date, announcement_by, announcement_category) VALUES ('$announcement_content','$announcement_date','$announcement_by','$announcement_category')";
       mysqli_query($db, $query);
   }
 
-  public function update_announcement($announcement_content,$announcement_id) {
+  public function updateAnnouncement($announcement_content,$announcement_id) {
     $query = "UPDATE announcement SET announcements_content = '$announcement_content'  WHERE anouncement_id = '$announcement_id'";
     mysqli_query($db, $query);
   }
 
-  public function delete_announcement($announcement_id) {
+  public function deleteAnnouncement($announcement_id) {
     $query = "DELETE FROM announcements WHERE anouncement_id = '$announcement_id' ";
     mysqli_query($db, $query);
   }
 }
 
 class Results {
-
+  private $result_id = 0;
+  private $result_content = " ";
+  private $aresult_date = GETDATE();
+  
   function __construct() {
   
   }
 
-  function show_results() {
+  function showResults() {
       //results
       echo"Results.php"
   }
