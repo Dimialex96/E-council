@@ -11,7 +11,7 @@ public class Session {
   private $session_name = " ";
   private $start_date = GETDATE();
   private $end_date = GETDATE();
-  private $avtivity_numbers = 0;
+  private $avtivity_status = 0;
   private $extension = date_create("2019-05-19"); //getdate();
   private $next_session_id = 0;
 
@@ -65,12 +65,12 @@ public class Session {
   }
   //epistrofi tou energou session
   public function sessionStatus() {
-     $query = "SELECT * FROM sessions WHERE activity_numbers = '1' ";
+     $query = "SELECT * FROM sessions WHERE activity_status = '1' ";
      $result = mysqli_query($db, $query);
       if (mysqli_num_rows($result) == 1) {
             while($row = mysqli_fetch_assoc($result)) {
               echo ":session_id " . $row["session_id"].  "&nbsp&nbspSession&nbspName&nbsp" .$row['session_name'].
-              "&nbsp&nbspStart&nbspDate&nbsp" .$row['start_date']."&nbsp&nbspEnd&nbspDate&nbsp" .$row['end_date']."&nbsp&nbspActivity&nbsp" .$row['activity_numbers']. "<br>" ;
+              "&nbsp&nbspStart&nbspDate&nbsp" .$row['start_date']."&nbsp&nbspEnd&nbspDate&nbsp" .$row['end_date']."&nbsp&nbspActivity&nbsp" .$row['activity_status']. "<br>" ;
             }
       } else {
             echo "0 results";
