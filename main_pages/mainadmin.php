@@ -2,7 +2,7 @@
 session_start();
   if (!isset($_SESSION['user_name'])) {
   	$_SESSION['ecouncildb'] = "Πρέπει να συνδεθείτε πρώτα";
-  	header('location: login.php');
+  	header('location: loginadmin.php');
   }
   if (isset($_GET['logout'])) {
   	session_destroy();
