@@ -25,7 +25,7 @@
   		<button type="submit" class="btn" name="login_user">Είσοδος</button>
 	</div>
   </form>
-	<a href="loginadministrator.php" style="color: #400000">Administrator</a>
+	<a href="loginadmin.php" style="color: #400000">Administrator</a>
 	<a href="loginmoderator.php" style="color: #500000">Moderator</a>
 	<a href="loginprofessor.php" style="color: #500000">Professor</a>
 </body>
