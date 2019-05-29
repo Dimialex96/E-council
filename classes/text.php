@@ -79,7 +79,9 @@ public class Subject {
   private $subject_vote_count = 0;
   
   public function __construct($subject_description,$date,$by,$subject_cat,$content,$id,$checked,$subject_vote_count) {
+    
     parent::__construct($id,$content,$date,$by,$checked);
+    
     $this->subject_description = $_POST['subject_description'];
     $this->subject_cat = $_POST['category'];
     $this->subject_vote_count = $subject_vote_count;
@@ -108,7 +110,9 @@ public class Comment {
   private $comment_subject = 0;
 
   public function __construct($id,$content,$date,$by,$comment_subject,$checked) {
+    
     parent::__construct($id,$content,$date,$by,$checked);
+    
     $this->comment_subject = $_POST['subject_id'];
   }
   //elegxos periexomenou tou comment an teirei tis prodiagrafes(ligotero apo 200 xaraktires)
