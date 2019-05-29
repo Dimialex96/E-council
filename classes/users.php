@@ -33,11 +33,6 @@ class Student extends User {
   private $countpost;
   private $countsolution;
   private $countvotesolution;
-  //connection to database
-  $db = mysqli_connect('localhost','root','', 'ecounicldb');
-  if (!$db) {
-    die("Connection failed: " . mysqli_connect_error());
-  }
 
   function __construct($username,$lastname,$firstname,$password,$email,$id,$level,$etos,$subject_by,$countpost,$countsolution,$countvotesolution) {
     parent::__construct($username,$lastname,$firstname,$password,$email,$id,$level);
@@ -157,19 +152,15 @@ class Student extends User {
 
 class Admin extends User {
 
-  function __construct($username,$lastname,$firstname,$password,$email,$id,$level,$etos,$subject_by,$countpost,$countsolution,$countvotesolution) {
+  function __construct() {
   parent::__construct($username,$lastname,$firstname,$password,$email,$id,$level);
-  }
-
-  function selection() {
-
   }
 }
 
 class Professor extends User {
 
   function __construct() {
-    parent::__construct("name","surname","username","password","email","id")
+    parent::__construct($username,$lastname,$firstname,$password,$email,$id,$level)
   }
 
   function postSocialHourSubject() {
@@ -182,8 +173,9 @@ class Moderator extends User {
   private $commentok = 0;
   
   function __construct() {
-    parent::__construct("name","surname","username","password","email","id")
-      
+    parent::__construct($username,$lastname,$firstname,$password,$email,$id,$level);
+    $this->subjectok = $_POST['subjectok'];
+    $this->commentok = $_POST['commentok'];     
   }
 
   //analoga me tin krisi tou moderator i metabliti subjectok kathorizei an to subject itan katallilo i oxi
