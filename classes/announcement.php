@@ -22,7 +22,7 @@ class Announcement {
     $this->kindofannouncement = $_POST['kindofannouncement'];
   }
 
-  public function check_formattingAnnouncement() {
+  public function checkFormattingAnnouncement() {
     $stringlength = strlen($announcement_content);
     if ( $stringlength >= 200 ) {
       echo "Too many characters" ;
