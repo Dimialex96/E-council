@@ -58,7 +58,7 @@ CREATE TABLE sessions (
   session_name       ENUM('Forum','Post_Solution','Vote_Solution'),
   start_date         DATETIME NOT NULL,
   end_date           DATETIME NOT NULL,
-  activity_numbers   ENUM('0','1') NOT NULL,
+  activity_status   ENUM('0','1') NOT NULL,
   extention          DATEDIFF NOT NULL,
   PRIMARY KEY (session_id)
 ) TYPE=INNODB;
