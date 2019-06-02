@@ -30,10 +30,10 @@ class Announcement {
       die();
     } else {
       if ($kindofannouncement == 'new' ) {
-        insert_announcement($announcement_content,$announcement_date,$announcement_by,$announcement_category);
+        insertAnnouncement($announcement_content,$announcement_date,$announcement_by,$announcement_category);
         die();
       } else ($kindofannouncement == 'old') {
-        update_announcement($announcement_content,$announcement_id);
+        updateAnnouncement($announcement_content,$announcement_id);
         die();
       }
     }
