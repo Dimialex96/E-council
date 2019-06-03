@@ -79,7 +79,6 @@ class Results {
 
   function showResults() {
       //results
-      echo"Results.php"
   }
 }
 ?>
