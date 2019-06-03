@@ -6,7 +6,7 @@
   }
 
 public class Session {
-  
+
   private $session_id = 0;
   private $session_name = " ";
   private $start_date = GETDATE();
@@ -17,7 +17,7 @@ public class Session {
 
   public function __construct($session_id,$session_name,$start_date,$end_date,$activity_numbers,$extension,$next_session_id) {
     $this->session_id = $_POST['session_id'];
-    $this->session_name = $session_name ; 
+    $this->session_name = $session_name ;
     $this->start_date = GETDATE();
     $this->end_date = $_POST['end_date'];
     $this->activity_numbers = $activity_numbers;
@@ -44,7 +44,7 @@ public class Session {
     if ($session_id == 0) {
       header("Location: Post_subject.php");
     } elseif ($session_id == 1) {
-      header("Location: Post_solution.php");  
+      header("Location: Post_solution.php");
     } else {
       header("Location: Vote_solution.php");
     }
@@ -76,5 +76,4 @@ public class Session {
             echo "0 results";
       }
   }
-
 ?>

@@ -1,31 +1,23 @@
 <?php
-class Filter_Forum {
+public class Social_Hour {
 
-}
-
-//social_hour
-class Social_Hour {
-  var $suspender;
-  var $social_hour_subject;
-
-  function __construct($suspender,$social_hour_subject)
-  {
-    $this->suspender = $suspender;
-    $this->social_hour_subject = $social_hour_subject;
-  }
-
-  function voted_already()
-  {
+  function __construct() {
 
   }
 
-  function sh_vote_db_update()
-  {
+  function SubmitSHSubjectVote() {
 
   }
 
-  function redirect_to_rejection_page()
-  {
+  function selectVoteSHSubject() {
+
+  }
+
+  function updateSHVote() {
+
+  }
+
+  function redirectToRejectionPage() {
 
   }
 }

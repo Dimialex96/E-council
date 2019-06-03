@@ -1,5 +1,5 @@
 <?php
-abstract class Text{
+abstract class Text {
 
 protected $id = 0 ;
 protected $content = " ";
@@ -17,7 +17,6 @@ abstract protected function insert();
     $this->by = $_POST['username'];
     $this->checked = $checked;
   }
-
 }
 
 public class Solutions {
@@ -25,11 +24,9 @@ public class Solutions {
   private $solution_subject;
   private $solution_vote_count = 0;
   public function __construct($id,$content,$date,$solution_subject,$by,$solution_vote_count) {
-  
   parent::__construct($id,$content,$date,$by,$checked);
-      
-      this->$solution_subject = $_POST['solution_subject'];
-      this->$solution_vote_count = $solution_vote_count;    
+      $this->solution_subject = $_POST['solution_subject'];
+      $this->solution_vote_count = $solution_vote_count;
   }
   //elegxos periexomenou tou solution an teirei tis prodiagrafes(ligotero apo 500 xaraktires)
   public function format($content,$date,$solution_subject,$by) {
@@ -72,16 +69,16 @@ public class Solutions {
       echo "0 results";
     }
   }
+}
+
 public class Subject {
 
   private $subject_description = " ";
   private $subject_cat = " ";
   private $subject_vote_count = 0;
-  
+
   public function __construct($subject_description,$date,$by,$subject_cat,$content,$id,$checked,$subject_vote_count) {
-    
     parent::__construct($id,$content,$date,$by,$checked);
-    
     $this->subject_description = $_POST['subject_description'];
     $this->subject_cat = $_POST['category'];
     $this->subject_vote_count = $subject_vote_count;
@@ -104,15 +101,13 @@ public class Subject {
     mysqli_query($db, $query);
   }
 }
-          
+
 public class Comment {
 
   private $comment_subject = 0;
 
   public function __construct($id,$content,$date,$by,$comment_subject,$checked) {
-    
     parent::__construct($id,$content,$date,$by,$checked);
-    
     $this->comment_subject = $_POST['subject_id'];
   }
   //elegxos periexomenou tou comment an teirei tis prodiagrafes(ligotero apo 200 xaraktires)
@@ -133,3 +128,4 @@ public class Comment {
     mysqli_query($db, $query);
   }
 }
+?>

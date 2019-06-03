@@ -5,7 +5,7 @@
     die("Connection failed: " . mysqli_connect_error());
   }
 
-class Announcement {
+public class Announcement {
   private $announcement_id = 0;
   private $announcement_content = " ";
   private $announcement_date = GETDATE();
@@ -21,7 +21,7 @@ class Announcement {
     $this->announcement_category = $_POST['announcement_category'];
     $this->kindofannouncement = $_POST['kindofannouncement'];
   }
-
+  //elegxos gia to an to announcement einai ligotero apo 200 xaraktires kai analoga me ton tipo tis anakoinosis nea i palia ginete antistoixa insert i update
   public function formatAnnouncement() {
     $stringlength = strlen($announcement_content);
     if ( $stringlength >= 200 ) {
@@ -39,7 +39,7 @@ class Announcement {
     }
     }
   }
-
+  //emfanisi olon ton announcement taksinomimeno me fthinousa imerominia
   public function selectAnnouncement() {
     $query = "SELECT * FROM announcements ORDER BY announcement_date DESC";
     $result = mysqli_query($db, $query);
@@ -68,7 +68,7 @@ class Announcement {
   }
 }
 
-class Results {
+public class Results {
   private $result_id = 0;
   private $result_content = " ";
   private $aresult_date = GETDATE();

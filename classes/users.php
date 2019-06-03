@@ -101,36 +101,16 @@ class Student extends User {
       echo "Den epitrepete na psifisi allo sinolo liseon, exete idi psifisei";
     }
   }
-
-  function confirm() {
-
-  }
-
-  function submitVote() {
-
-  }
-
-  function validateVote() {
-
-  }
-
-  function insertSearchParameters() {
-
-  }
-
-  function selectResult() {
-
-  }
 }
 
 class Moderator extends User {
   private $subjectok = 0;
   private $commentok = 0;
-  
+
   public function __construct() {
     parent::__construct($username,$lastname,$firstname,$password,$email,$id,$level);
     $this->subjectok = $_POST['subjectok'];
-    $this->commentok = $_POST['commentok'];     
+    $this->commentok = $_POST['commentok'];
   }
 
   //analoga me tin krisi tou moderator i metabliti subjectok kathorizei an to subject itan katallilo i oxi
@@ -185,7 +165,7 @@ class Moderator extends User {
     //if-else
   }
 }
-          
+
 class Admin extends User {
 
   public function __construct() {
@@ -199,7 +179,7 @@ class Professor extends User {
     parent::__construct($username,$lastname,$firstname,$password,$email,$id,$level)
   }
 
-  function postSocialHourSubject() {
+  public function postSHSubject() {
 
   }
 }
